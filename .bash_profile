@@ -57,11 +57,11 @@ alias delete_old_branches="git branch --merged master | grep -v 'master$' | xarg
 alias brake="bundle exec rake"
 
 set -o vi
-#bind -m vi-command i:previous-history
-#bind -m vi-command k:next-history
-#bind -m vi-command h:vi-insertion-mode
-#bind -m vi j:backward-char
-#bind -m vi H:vi-insert-beg
+bind -m vi-command i:previous-history
+bind -m vi-command k:next-history
+bind -m vi-command h:vi-insertion-mode
+bind -m vi j:backward-char
+bind -m vi H:vi-insert-beg
 
 # set up auto complete for my git alias
 __git_complete g _git

@@ -4,7 +4,10 @@ filetype plugin indent on
 set noswapfile
 filetype indent on
 set number
-
+" APP SPECIFIC
+  noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
+"
+"
 "Ruby standards
 set shiftwidth=2
 set tabstop=2
@@ -19,24 +22,24 @@ set expandtab
 
 " Basic movement
 
-""   left
-"    noremap j h
+"   left
+    noremap j h
 
-""   down
-"    noremap k j
+"   down
+    noremap k j
 
-""   up
-"    noremap i k
+"   up
+    noremap i k
 
 "   Big up
-    noremap K 22gk
+    noremap I 22gk
 
 "   Big down
-    noremap J 22gj
+    noremap K 22gj
 
-""   Fix insert
-"    noremap h i
-"    noremap H I
+"   Fix insert
+    noremap h i
+    noremap H I
 
 " Control
 
