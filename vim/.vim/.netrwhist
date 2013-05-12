@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/pk/home/personal/portfolio_chaplin/app/views'
-let g:netrw_dirhist_2='/Users/pk/home/juntobox/config/deploy'
-let g:netrw_dirhist_3='/Users/pk/home/juntobox/app/views/shared'
-let g:netrw_dirhist_4='/Users/pk/home/juntobox/app/assets/images'
-let g:netrw_dirhist_5='/Users/pk/home/juntobox/config'
