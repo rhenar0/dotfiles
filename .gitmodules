@@ -19,3 +19,6 @@
 [submodule "vim/.vim/bundle/vim-indent-guides"]
 	path = vim/.vim/bundle/vim-indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "vim/.vim/bundle/solarized"]
+	path = vim/.vim/bundle/solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
