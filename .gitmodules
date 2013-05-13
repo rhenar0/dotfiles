@@ -25,3 +25,6 @@
 [submodule "vim/.vim/bundle/vim-script"]
 	path = vim/.vim/bundle/vim-script
 	url = https://github.com/vim-scripts/taglist.vim.git
+[submodule "vim/.vim/bundle/vim-dispatch"]
+	path = vim/.vim/bundle/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git
