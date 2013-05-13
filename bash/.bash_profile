@@ -132,7 +132,7 @@ function pk_ruby_prompt()
   pk_git_status
   CWD="$(dirs)"
   # run the decoration script with mri ruby, cause jruby is sloooow
-  export PS1="\n\[\e[0;31m\]${timer_show} : ${RUBY_VERSION}\n$(ruby ~/personal/dotfiles/bash/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
+  export PS1="\n\[\e[0;31m\]${timer_show} : ${RUBY_VERSION}\n$(ruby ~/personal/dotfiles/bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
 }
 trap "pk_trap" DEBUG
 
