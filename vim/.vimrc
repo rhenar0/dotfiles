@@ -9,7 +9,10 @@ set number
   noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
   noremap <C-v> :CtrlP ~/src/vdr<cr>
 "
-"
+" EXPERIMENTAL
+  ab PRY require 'pry';binding.pry
+  au VimEnter *  NERDTree
+
 "Ruby standards
 set shiftwidth=2
 set tabstop=2

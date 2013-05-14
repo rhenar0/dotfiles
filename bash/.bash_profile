@@ -9,6 +9,7 @@ fi
 
 #macVim
 alias mvim='open -a MacVim'
+export EDITOR='open -a MacVim'
 
 #For npm
 export PATH="/usr/local/share/npm/bin:$PATH"
@@ -27,6 +28,7 @@ alias rspecf='rspec --format documentation -d --color'
 alias be='bundle exec'
 alias g='git'
 alias quiet='osascript -e "set Volume 0.05"'
+alias console='pry -r ./config/environment'
 
 
 #from Brynjar
@@ -70,6 +72,26 @@ __git_complete g _git
 
 #sets up the color scheme for list export
 LSCOLORS=gxfxcxdxbxegedabagacad
+
+#
+# Run a specific test
+# Should handle cases better (e.g. what if test not found?)
+
+function test()
+{
+  #ack test/ | grep .rb
+  TEST_FUNCTION=$1
+  TEST_FILE="$(ack $1 ./test | grep .rb | awk -F':' '{print $1}')"
+  rake_test
+}
+function rake_test()
+{
+  echo "running: $TEST_FILE : $TEST_FUNCTION"
+  rake test TEST=$TEST_FILE TESTOPTS=-n$TEST_FUNCTION
+}
+
+#
+# END run specific test
 
 function nuke()
 {
