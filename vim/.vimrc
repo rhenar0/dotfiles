@@ -7,6 +7,7 @@ filetype indent on
 set number
 " APP SPECIFIC
   noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
+  noremap <C-v> :CtrlP ~/src/vdr<cr>
 "
 "
 "Ruby standards
@@ -165,7 +166,7 @@ set expandtab
 
 " Plugins
 " open ctag in new tab
-map <C-a> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+  map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 "   for NerdComment
     filetype plugin on
 

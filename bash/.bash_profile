@@ -1,4 +1,4 @@
-PATH="/usr/local/bin:$PATH"
+PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
 source ~/.rvm/scripts/rvm
 #git autocomplete
@@ -17,6 +17,7 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 alias koutouki='cd ~/home/koutouki'
 alias home='cd ~/home'
 alias mylog='mvim ~/personal/notes/mylog.txt'
+alias mylife='mvim ~/Google\ Drive/journal.txt'
 alias notes='mvim ~/home/notes/juntobox.txt'
 alias ls='ls -G'
 alias cd..='cd ..'
@@ -74,6 +75,10 @@ function nuke()
   ps ax | grep $1 | awk '{print $1}' | xargs kill -9
 }
 
+function f()
+{
+  grep $1 -r ./
+}
 #BEGIN PROMPT FUN STUFF
 function pk_test_if_repo()
 {
