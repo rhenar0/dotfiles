@@ -26,6 +26,7 @@ alias ll='ls -all'
 alias rspecf='rspec --format documentation -d --color'
 alias be='bundle exec'
 alias g='git'
+alias quiet='osascript -e "set Volume 0.05"'
 
 
 #from Brynjar
