@@ -34,3 +34,6 @@
 [submodule "vim/.vim/bundle/ag-vim"]
 	path = vim/.vim/bundle/ag-vim
 	url = https://github.com/rking/ag.vim.git
+[submodule "vim/.vim/bundle/gundo"]
+	path = vim/.vim/bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git

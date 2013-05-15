@@ -15,6 +15,7 @@ set number
   ab PRY require 'pry';binding.pry
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
+  noremap <leader>u :GundoToggle<cr>
 "Ruby standards
 set shiftwidth=2
 set tabstop=2
