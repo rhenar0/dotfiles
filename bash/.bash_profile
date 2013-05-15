@@ -48,7 +48,7 @@ alias listings='cd ~/src/property/property_bundle/trunk/apps/listings'
 alias screenings='cd ~/src/appfolio_git/screenings_app'
 alias screenings_template='cd ~/src/property/screenings_template/trunk'
 alias vdr='cd ~/src/vdr/vdr_app/'
-alias sso='cd ~/src/appfolio/sso_app/trunk'
+alias sso='cd ~/src/vdr/sso_app/'
 alias rails_code='cd ~/src/rails'
 alias st='if [ -e ./.svn ]
 then
@@ -79,15 +79,20 @@ LSCOLORS=gxfxcxdxbxegedabagacad
 
 function test()
 {
-  #ack test/ | grep .rb
   TEST_FUNCTION=$1
-  TEST_FILE="$(ack $1 ./test | grep .rb | awk -F':' '{print $1}')"
+  TEST_FILE="$(ag $1 ./test | grep .rb | awk -F':' '{print $1}')"
   rake_test
 }
 function rake_test()
 {
-  echo "running: $TEST_FILE : $TEST_FUNCTION"
-  rake test TEST=$TEST_FILE TESTOPTS=-n$TEST_FUNCTION
+  if [[ $TEST_FILE = '' ]]
+  then
+    echo "running: $TEST_FUNCTION"
+    rake test TEST=$TEST_FUNCTION
+  else
+    echo "running: $TEST_FILE : $TEST_FUNCTION"
+    rake test TEST=$TEST_FILE TESTOPTS=-n$TEST_FUNCTION
+  fi
 }
 
 #
@@ -98,10 +103,6 @@ function nuke()
   ps ax | grep $1 | awk '{print $1}' | xargs kill -9
 }
 
-function f()
-{
-  grep $1 -r ./
-}
 #BEGIN PROMPT FUN STUFF
 function pk_test_if_repo()
 {

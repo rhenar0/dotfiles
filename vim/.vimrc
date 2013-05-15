@@ -11,8 +11,8 @@ set number
 "
 " EXPERIMENTAL
   ab PRY require 'pry';binding.pry
-  au VimEnter *  NERDTree
-
+  noremap <leader>st :NERDTreeFind<cr>
+  let g:NERDTreeMapOpenSplit = "q"
 "Ruby standards
 set shiftwidth=2
 set tabstop=2
@@ -188,15 +188,15 @@ set expandtab
     let g:SuperTabLongestEnhanced=0
 
 "   Custom
-  function! g:ToggleNuMode()
-    if(&rnu == 1)
-      set nu
-    else
-      set rnu
-    endif
-  endfunc
-  noremap <leader>n :call g:ToggleNuMode()<cr>
-  set rnu
+  "function! g:ToggleNuMode()
+  "  if(&rnu == 1)
+  "    set nu
+  "  else
+  "    set rnu
+  "  endif
+  "endfunc
+  "noremap <leader>n :call g:ToggleNuMode()<cr>
+  "set rnu
 
 " Appearance
 " turn off scrollbars
