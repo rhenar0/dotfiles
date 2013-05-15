@@ -29,6 +29,7 @@ alias be='bundle exec'
 alias g='git'
 alias quiet='osascript -e "set Volume 0.05"'
 alias console='pry -r ./config/environment'
+alias gems='mvim ~/.rvm/gems/ree-1.8.7-2010.02/gems/'
 
 
 #from Brynjar

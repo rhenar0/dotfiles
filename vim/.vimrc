@@ -5,13 +5,15 @@ filetype plugin indent on
 set noswapfile
 filetype indent on
 set number
+" LEADER
+  let mapleader = ","
 " APP SPECIFIC
   noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
   noremap <C-v> :CtrlP ~/src/vdr<cr>
 "
 " EXPERIMENTAL
   ab PRY require 'pry';binding.pry
-  noremap <leader>st :NERDTreeFind<cr>
+  noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
 "Ruby standards
 set shiftwidth=2
@@ -22,8 +24,6 @@ set expandtab
     set hidden
 
 
-" LEADER
-  let mapleader = ","
 
 " Basic movement
 
