@@ -1,1 +1,7 @@
 tags
+public/
+vendor/
+tmp/
+log/
+shared_tmp/
+*.pdf
