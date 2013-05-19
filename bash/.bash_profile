@@ -78,25 +78,94 @@ LSCOLORS=gxfxcxdxbxegedabagacad
 
 function t()
 {
-  if [[ $TEST_FUNCTION = '' ]]
+  TEST_FUNCTION=''
+  TEST_FILE=''
+
+  if [[ $1 = '' ]]
   then
+    echo "Running unit tests."
+    bundle exec rake
     return
+  fi
+
+  if [[ $1 =~ [\/] ]]
+  then
+    # full path given
+    TEST_FILE="$1"
+    if [[ -e "$TEST_FILE" ]]
+    then
+      pk_rake_test_file
+      return
+    else
+      echo "File does not exist."
+      return
+    fi
+
+  fi
+
+  if [[ $1 =~ \.rb$ ]]
+  then
+    # file name given, not full path
+
+    TEST_FILE="$(find . -name $1)"
+
+    if [[ $TEST_FILE = '' ]]
+    then
+      # file not found
+      echo "file $1 not found"
+      return
+    fi
+
+    if [[ $TEST_FILE =~ \n(.)+\n ]]
+    then
+      # found multiple files
+      echo "$TEST_FILE"
+      echo "Multiple test files of that name exist..."
+      echo "Please use the full path."
+      return
+    fi
+
+    # found the file
+    pk_rake_test_file
+
   else
+    # given a test name, no file given
+
     TEST_FUNCTION=$1
-    TEST_FILE="$(ag $1 ./test | grep .rb | awk -F':' '{print $1}')"
-    pk_rake_test
+    TEST_FILE="$(ag def[^\n]+$1 ./test | grep .rb | awk -F':' '{print $1}')"
+    TEST_FUNCTION="$(ag def[^\n]+$1 ./test | grep .rb | awk -F':' '{print $3}')"
+    TEST_FUNCTION="${TEST_FUNCTION:6}"
+
+    if [[ $TEST_FILE = '' ]]
+    then
+      # couldn't find specified test
+      echo "Could not find test function matching: $1"
+      return
+    fi
+
+    if [[ $TEST_FILE =~ (.)+\.rb(.)+ ]]
+    then
+      # multiple tests found
+      echo "$TEST_FILE"
+      echo "Mulitple test files contain a test of that name."
+      echo "This script can't handle that :("
+      return
+    fi
+
+    # found the specified test
+    pk_rake_specific_test
   fi
 }
-function pk_rake_test()
+
+function pk_rake_test_file()
 {
-  if [[ $TEST_FILE = '' ]]
-  then
-    echo "running: $TEST_FUNCTION"
-    bundle exec rake test TEST=$TEST_FUNCTION
-  else
-    echo "running: $TEST_FILE : $TEST_FUNCTION"
-    bundle exec rake test TEST=$TEST_FILE TESTOPTS=-n$TEST_FUNCTION
-  fi
+  echo "bundle exec rake test TEST=$TEST_FILE"
+  bundle exec rake test TEST=$TEST_FILE
+}
+function pk_rake_specific_test()
+{
+  echo "bundle exec rake test TEST=$TEST_FILE TESTOPTS=--name=$TEST_FUNCTION"
+  bundle exec rake test TEST=$TEST_FILE TESTOPTS=--name=$TEST_FUNCTION
 }
 
 #
