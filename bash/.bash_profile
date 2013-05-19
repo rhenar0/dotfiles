@@ -21,7 +21,6 @@ alias mylife='mvim ~/Google\ Drive/journal.txt'
 alias notes='mvim ~/home/notes/juntobox.txt'
 alias ls='ls -G'
 alias cd..='cd ..'
-#alias .='cd ..'
 alias ll='ls -all'
 alias rspecf='rspec --format documentation -d --color'
 alias be='bundle exec'
@@ -72,6 +71,13 @@ __git_complete g _git
 #sets up the color scheme for list export
 LSCOLORS=gxfxcxdxbxegedabagacad
 
+function notify()
+{
+  shopt -s expand_aliases
+  source ~/.bash_profile
+  $1
+  terminal-notifier -message "$@ has finished"
+}
 #
 # Run a specific test
 

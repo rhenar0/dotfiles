@@ -1,0 +1,20 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.0.9)
+    gemedit (1.0.1)
+    method_source (0.8.1)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    slop (3.4.5)
+    terminal-notifier (1.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  gemedit
+  pry
+  terminal-notifier
