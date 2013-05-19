@@ -164,15 +164,6 @@ __git_complete g _git
 #sets up the color scheme for list export
 LSCOLORS=gxfxcxdxbxegedabagacad
 
-function notify()
-{
-  $@
-
-  if [[ ${timer_show} > 4 ]]
-  then
-    terminal-notifier -message "$@ has finished"
-  fi
-}
 #
 # Run a specific test
 
