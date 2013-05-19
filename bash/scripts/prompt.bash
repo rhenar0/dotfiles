@@ -19,18 +19,6 @@ function pk_git_status()
     BRANCH="\n"
   fi
 }
-#Initial Answer isn't empty just because
-ANSWER="00"
-
-function pk_random_question()
-{
-  QUESTION="$(ruby ~/personal/mac_config/bash/ruby_prompt_question.rb)"
-}
-
-function pk_random_answer()
-{
-  ANSWER="$(ruby ~/personal/mac_config/bash/ruby_prompt_answer.rb ${QUESTION})"
-}
 
 function pk_timer_start {
   timer=${timer-$SECONDS}
@@ -48,11 +36,6 @@ function pk_trap()
   pk_timer_start
 }
 
-function pk_run_time()
-{
-  END=`date +%s`
-  echo "DURATION: $(($END-$START))"
-}
 function pk_ruby_prompt()
 {
   pk_timer_stop
@@ -62,7 +45,7 @@ function pk_ruby_prompt()
   fi
   pk_git_status
   CWD="$(dirs)"
-  export PS1="\n\[\e[0;31m\]${timer_show} : ${RUBY_VERSION}\n$(ruby ~/personal/dotfiles/bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
+  export PS1="\n\[\e[0;31m\]${timer_show} : ${RUBY_VERSION}\n$(ruby ~/.bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
 }
 trap "pk_trap" DEBUG
 
