@@ -16,6 +16,7 @@ set number
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
   noremap <leader>nu :GundoToggle<cr>
+  let g:ctrlp_follow_symlinks = 1
 "Ruby standards
 set shiftwidth=2
 set tabstop=2
