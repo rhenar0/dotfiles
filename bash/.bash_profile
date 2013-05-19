@@ -78,21 +78,21 @@ LSCOLORS=gxfxcxdxbxegedabagacad
 # Run a specific test
 # Should handle cases better (e.g. what if test not found?)
 
-function test()
+function t()
 {
   TEST_FUNCTION=$1
   TEST_FILE="$(ag $1 ./test | grep .rb | awk -F':' '{print $1}')"
-  rake_test
+  pk_rake_test
 }
-function rake_test()
+function pk_rake_test()
 {
   if [[ $TEST_FILE = '' ]]
   then
     echo "running: $TEST_FUNCTION"
-    rake test TEST=$TEST_FUNCTION
+    bundle exec rake test TEST=$TEST_FUNCTION
   else
     echo "running: $TEST_FILE : $TEST_FUNCTION"
-    rake test TEST=$TEST_FILE TESTOPTS=-n$TEST_FUNCTION
+    bundle exec rake test TEST=$TEST_FILE TESTOPTS=-n$TEST_FUNCTION
   fi
 }
 
