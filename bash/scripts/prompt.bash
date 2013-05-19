@@ -1,12 +1,12 @@
 
 #BEGIN PROMPT FUN STUFF
-function pk_test_if_repo()
+function __pk_test_if_repo()
 {
   git branch > /dev/null 2>&1
 }
-function pk_git_status()
+function __pk_git_status()
 {
-  if  pk_test_if_repo ;
+  if  __pk_test_if_repo ;
   then
     CLEAN="$(git status | grep 'clean')"
     if [[ $CLEAN = '' ]]
@@ -20,35 +20,35 @@ function pk_git_status()
   fi
 }
 
-function pk_timer_start {
+function __pk_timer_start {
   timer=${timer-$SECONDS}
 }
-function pk_timer_stop {
+function __pk_timer_stop {
   timer_show=$(($SECONDS - $timer))
   unset timer
 }
 
-function pk_trap()
+function __pk_trap()
 {
   printf '\e[0m'
-  PK_COMMAND_HISTORY[1]=${PK_COMMAND_HISTORY[0]}
-  PK_COMMAND_HISTORY[0]=$BASH_COMMAND
-  pk_timer_start
+  __PKCOMMAND_HISTORY[1]=${__PKCOMMAND_HISTORY[0]}
+  __PKCOMMAND_HISTORY[0]=$BASH_COMMAND
+  __pk_timer_start
 }
 
-function pk_ruby_prompt()
+function __pk_ruby_prompt()
 {
-  pk_timer_stop
+  __pk_timer_stop
   if (( "${timer_show}" > "4" ))
   then
-    terminal-notifier -message "'${PK_COMMAND_HISTORY[1]}' finished." > /dev/null
+    terminal-notifier -message "'${__PKCOMMAND_HISTORY[1]}' finished." > /dev/null
   fi
-  pk_git_status
+  __pk_git_status
   CWD="$(dirs)"
   export PS1="\n\[\e[0;31m\]${timer_show} : ${RUBY_VERSION}\n$(ruby ~/.bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
 }
-trap "pk_trap" DEBUG
+trap "__pk_trap" DEBUG
 
 #call this command every prompt
-PROMPT_COMMAND=pk_ruby_prompt
+PROMPT_COMMAND=__pk_ruby_prompt
 
