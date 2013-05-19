@@ -64,19 +64,11 @@ function console()
 {
   pry -r ./config/environment
 }
-function gems()
-{
-  mvim ~/.rvm/gems/ree-1.8.7-2010.02/gems/
-}
 
 #from Brynjar
 function mine()
 {
   open -a RubyMine .
-}
-function kp()
-{
-  ps aux | grep [n]ginx | awk '{print $2}' | xargs kill -9
 }
 function ss()
 {
@@ -134,17 +126,9 @@ function sso()
 {
   cd ~/src/vdr/sso_app/
 }
-function rails_code()
-{
-  cd ~/src/rails
-}
 function be()
 {
   bundle exec $@
-}
-function delete_old_branches()
-{
-  git branch --merged master | grep -v 'master$' | xargs git branch -d
 }
 function brake()
 {
