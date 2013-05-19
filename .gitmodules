@@ -37,3 +37,6 @@
 [submodule "vim/.vim/bundle/gundo"]
 	path = vim/.vim/bundle/gundo
 	url = http://github.com/sjl/gundo.vim.git
+[submodule "vim/.vim/bundle/relops"]
+	path = vim/.vim/bundle/relops
+	url = https://github.com/vim-scripts/RelOps.git

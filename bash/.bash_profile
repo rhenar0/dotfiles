@@ -6,7 +6,6 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
-
 #macVim
 alias mvim='open -a MacVim'
 export EDITOR='open -a MacVim'
@@ -30,7 +29,6 @@ alias g='git'
 alias quiet='osascript -e "set Volume 0.05"'
 alias console='pry -r ./config/environment'
 alias gems='mvim ~/.rvm/gems/ree-1.8.7-2010.02/gems/'
-
 
 #from Brynjar
 alias m='open -a RubyMine .'
@@ -80,9 +78,14 @@ LSCOLORS=gxfxcxdxbxegedabagacad
 
 function t()
 {
-  TEST_FUNCTION=$1
-  TEST_FILE="$(ag $1 ./test | grep .rb | awk -F':' '{print $1}')"
-  pk_rake_test
+  if [[ $TEST_FUNCTION = '' ]]
+  then
+    return
+  else
+    TEST_FUNCTION=$1
+    TEST_FILE="$(ag $1 ./test | grep .rb | awk -F':' '{print $1}')"
+    pk_rake_test
+  fi
 }
 function pk_rake_test()
 {
