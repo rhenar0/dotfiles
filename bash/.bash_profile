@@ -75,8 +75,36 @@ LSCOLORS=gxfxcxdxbxegedabagacad
 #
 # Run a specific test
 
+function pk_test_find_path_to_test_folder
+{
+  PK_PATH_REGEX=$(ls -al $PK_RELATIVE_PATH | grep "^dr" | grep "\ test$")
+  if [[ $PK_PATH_REGEX = '' ]]
+  then
+    PK_ROOT_REGEX=$(ls -al $PK_RELATIVE_PATH | grep "^dr" | grep "\ usr$")
+
+    if [[ $PK_ROOT_REGEX = '' ]]
+    then
+      PK_RELATIVE_PATH="${PK_RELATIVE_PATH}../"
+      pk_test_find_path_to_test_folder
+
+    else
+      PK_UNABLE_TO_LOCATE_ROOT_FOLDER=1
+    fi
+  fi
+}
 function t()
 {
+  PK_UNABLE_TO_LOCATE_ROOT_FOLDER=0
+  PK_RELATIVE_PATH="./"
+  pk_test_find_path_to_test_folder
+  if [[ $PK_UNABLE_TO_LOCATE_ROOT_FOLDER = 1 ]]
+  then
+    echo "Cannot locate test folder"
+    return
+  fi
+
+  cd $PK_RELATIVE_PATH
+
   if [[ $1 = '' ]]
   then
     pk_test_handle_default
@@ -89,6 +117,7 @@ function t()
     pk_test_handle_function_case $1
 
   fi
+  cd - > /dev/null
 }
 
 function pk_test_handle_default()
@@ -183,7 +212,7 @@ function pk_test_run()
     fi
   fi
   echo $PK_RAKE_TASK
-  #${PK_RAKE_TASK}
+  ${PK_RAKE_TASK}
 }
 
 function pk_test_test()
