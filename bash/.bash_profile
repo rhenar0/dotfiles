@@ -14,49 +14,142 @@ export EDITOR='open -a MacVim'
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 # my aliases
-alias koutouki='cd ~/home/koutouki'
-alias home='cd ~/home'
-alias mylog='mvim ~/personal/notes/mylog.txt'
-alias mylife='mvim ~/Google\ Drive/journal.txt'
-alias notes='mvim ~/home/notes/juntobox.txt'
-alias ls='ls -G'
-alias cd..='cd ..'
-alias ll='ls -all'
-alias rspecf='rspec --format documentation -d --color'
-alias be='bundle exec'
-alias g='git'
-alias quiet='osascript -e "set Volume 0.05"'
-alias console='pry -r ./config/environment'
-alias gems='mvim ~/.rvm/gems/ree-1.8.7-2010.02/gems/'
+function koutouki()
+{
+  cd ~/home/koutouki
+}
+function home()
+{
+  cd ~/home
+}
+function mylog()
+{
+  mvim ~/personal/notes/mylog.txt
+}
+function mylife()
+{
+  mvim ~/Google\ Drive/journal.txt
+}
+function notes()
+{
+  mvim ~/home/notes/juntobox.txt
+}
+function ls()
+{
+  # command means don't use user-defined functions
+  command ls -G $@
+}
+function cd..()
+{
+  cd ..
+}
+function ll()
+{
+  # this calls the ls defined above
+  ls -al
+}
+function be()
+{
+  bundle exec $@
+}
+function g()
+{
+  git $@
+}
+function quiet()
+{
+  osascript -e "set Volume 0.05"
+}
+function console()
+{
+  pry -r ./config/environment
+}
+function gems()
+{
+  mvim ~/.rvm/gems/ree-1.8.7-2010.02/gems/
+}
 
 #from Brynjar
-alias m='open -a RubyMine .'
-alias kp="ps aux | grep [n]ginx | awk '{print $2}' | xargs kill -9"
-alias si='EDITOR=vim svn propedit svn:ignore .'
-alias ss='script/start'
-alias aggregator='cd ~/src/appfolio/aggregator_app/trunk'
-alias biz='cd ~/src/appfolio/biz_app/trunk'
-alias cashier='cd ~/src/appfolio/cashier_app/trunk'
-alias cotasignup='cd ~/src/appfolio/cotasignupp_app/trunk'
-alias cota='cd ~/src/appfolio_git/rentapp_bundle/apps/cota'
-alias apply='cd ~/src/appfolio/rentapp_bundle/trunk/apps/apply'
-alias property='cd ~/src/property/property_bundle/trunk/apps/property'
-alias tportal='cd ~/src/property/property_bundle/trunk/apps/tportal'
-alias listings='cd ~/src/property/property_bundle/trunk/apps/listings'
-alias screenings='cd ~/src/appfolio_git/screenings_app'
-alias screenings_template='cd ~/src/property/screenings_template/trunk'
-alias vdr='cd ~/src/vdr/vdr_app/'
-alias sso='cd ~/src/vdr/sso_app/'
-alias rails_code='cd ~/src/rails'
-alias st='if [ -e ./.svn ]
-then
-  svnst;
-else
-  git status;
-fi'
-alias be="bundle exec"
-alias delete_old_branches="git branch --merged master | grep -v 'master$' | xargs git branch -d"
-alias brake="bundle exec rake"
+function mine()
+{
+  open -a RubyMine .
+}
+function kp()
+{
+  ps aux | grep [n]ginx | awk '{print $2}' | xargs kill -9
+}
+function ss()
+{
+  script/start
+}
+function aggregator()
+{
+  cd ~/src/appfolio/aggregator_app/trunk
+}
+function biz()
+{
+  cd ~/src/appfolio/biz_app/trunk
+}
+function cashier()
+{
+  cd ~/src/appfolio/cashier_app/trunk
+}
+function cotasignup()
+{
+  cd ~/src/appfolio/cotasignupp_app/trunk
+}
+function cota()
+{
+  cd ~/src/appfolio_git/rentapp_bundle/apps/cota
+}
+function apply()
+{
+  cd ~/src/appfolio/rentapp_bundle/trunk/apps/apply
+}
+function property()
+{
+  cd ~/src/property/property_bundle/trunk/apps/property
+}
+function tportal()
+{
+  cd ~/src/property/property_bundle/trunk/apps/tportal
+}
+function listings()
+{
+  cd ~/src/property/property_bundle/trunk/apps/listings
+}
+function screenings()
+{
+  cd ~/src/appfolio_git/screenings_app
+}
+function screenings_template()
+{
+  cd ~/src/property/screenings_template/trunk
+}
+function vdr()
+{
+  cd ~/src/vdr/vdr_app/
+}
+function sso()
+{
+  cd ~/src/vdr/sso_app/
+}
+function rails_code()
+{
+  cd ~/src/rails
+}
+function be()
+{
+  bundle exec $@
+}
+function delete_old_branches()
+{
+  git branch --merged master | grep -v 'master$' | xargs git branch -d
+}
+function brake()
+{
+  bundle exec rake $@
+}
 
 set -o vi
 bind -m vi-command i:previous-history
@@ -73,10 +166,12 @@ LSCOLORS=gxfxcxdxbxegedabagacad
 
 function notify()
 {
-  shopt -s expand_aliases
-  source ~/.bash_profile
-  $1
-  terminal-notifier -message "$@ has finished"
+  $@
+
+  if [[ ${timer_show} > 4 ]]
+  then
+    terminal-notifier -message "$@ has finished"
+  fi
 }
 #
 # Run a specific test
@@ -309,6 +404,8 @@ function pk_timer_stop {
 function pk_trap()
 {
   printf '\e[0m'
+  PK_COMMAND_HISTORY[1]=${PK_COMMAND_HISTORY[0]}
+  PK_COMMAND_HISTORY[0]=$BASH_COMMAND
   pk_timer_start
 }
 
@@ -320,9 +417,12 @@ function pk_run_time()
 function pk_ruby_prompt()
 {
   pk_timer_stop
+  if (( "${timer_show}" > "4" ))
+  then
+    terminal-notifier -message "'${PK_COMMAND_HISTORY[1]}' finished." > /dev/null
+  fi
   pk_git_status
   CWD="$(dirs)"
-  # run the decoration script with mri ruby, cause jruby is sloooow
   export PS1="\n\[\e[0;31m\]${timer_show} : ${RUBY_VERSION}\n$(ruby ~/personal/dotfiles/bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
 }
 trap "pk_trap" DEBUG
@@ -330,15 +430,6 @@ trap "pk_trap" DEBUG
 #call this command every prompt
 PROMPT_COMMAND=pk_ruby_prompt
 
-function clean_up()
-{
-  # delete stupid Google Drive duplicates (1)
-  find . | ack '\(1\)' > ~/todel.txt;
-  cat ~/todel.txt | while read line; do  rm -rf \"$line\" ; done;
-  rm -rf ~/todel.txt
-}
-
-alias mvim='open -a MacVim'
 #create file and/or open in macvim
 function e
 {
