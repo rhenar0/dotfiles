@@ -14,6 +14,10 @@ function nuke()
   ps ax | grep $1 | awk '{print $1}' | xargs kill -9
 }
 
+function analyze_history()
+{
+  history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -nr | head
+}
 function mvim()
 {
   open -a MacVim $@
@@ -140,4 +144,8 @@ function be()
 function brake()
 {
   bundle exec rake $@
+}
+function color_test()
+{
+  for code in $(seq -w 0 255); do for attr in 0 1; do printf "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m" "\e[m"; done; done | column -c $((COLUMNS*2))
 }

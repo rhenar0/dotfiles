@@ -1,14 +1,15 @@
 PATH="/usr/local/sbin:/usr/local/bin:$PATH"
 
+# git autocomplete
+# must come before aliases
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
 source ~/.rvm/scripts/rvm
 source ~/.bash/scripts/aliases.bash
 source ~/.bash/scripts/prompt.bash
 source ~/.bash/scripts/run_test.bash
-
-#git autocomplete
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
 
 #macVim
 export EDITOR='open -a MacVim'
@@ -26,3 +27,9 @@ bind -m vi H:vi-insert-beg
 
 #sets up the color scheme for list export
 LSCOLORS=gxfxcxdxbxegedabagacad
+
+function __pk_trapper()
+{
+  __pk_trap
+}
+trap "__pk_trapper" DEBUG
