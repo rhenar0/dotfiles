@@ -10,6 +10,7 @@ set number
 " APP SPECIFIC
   noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
   noremap <C-v> :CtrlP ~/src/vdr<cr>
+
 "
 " EXPERIMENTAL
   ab PRY require 'pry';binding.pry
@@ -17,6 +18,8 @@ set number
   let g:NERDTreeMapOpenSplit = "q"
   noremap <leader>nu :GundoToggle<cr>
   let g:ctrlp_follow_symlinks = 1
+  noremap <C-b> :CtrlPBuffer<cr>
+
 "Ruby standards
 set shiftwidth=2
 set tabstop=2
@@ -242,19 +245,21 @@ augroup END
     set gfn=Menlo:h12
 
 "   Theme
-    syntax enable
+    "syntax enable
 
     if has('gui_running')
         set background=dark
     else
         set background=light
     endif
-
     colorscheme solarized
-    "colorscheme tir_black
 
-"   Folding colors
-    autocmd VimEnter * :hi Folded guifg=#073642 guibg=bg
+    if &diff
+      let g:solarized_diffmode='high'
+      set syntax=off
+    else
+    endif
+
 
 "   Indent plug-in appearance
     let g:indent_guides_guide_size=2
@@ -268,6 +273,8 @@ augroup END
 "   Set status bar colors
     hi User1 guifg=#6C71C4 guibg=#073642
     hi User2 guifg=#d33682 guibg=#073642
+"   Folding colors
+    hi Folded guifg=#073642 guibg=bg
 
 "   Show filename in status bar
     set laststatus=2
@@ -303,38 +310,4 @@ augroup END
 "   highlight search terms"
     "set hlsearch
 
-
-
-function! RunCurrentSpecFile()
-  if InSpecFile()
-    let l:command = "s " . @% . " -f documentation"
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
-  endif
-endfunction
-
-function! RunNearestSpec()
-  if InSpecFile()
-    let l:command = "s " . @% . " -l " . line(".") . " -f documentation"
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
-  endif
-endfunction
-
-function! RunLastSpec()
-  if exists("t:last_spec_command")
-    call RunSpecs(t:last_spec_command)
-  endif
-endfunction
-
-function! InSpecFile()
-  return match(expand("%"), "_spec.rb$") != -1
-endfunction
-
-function! SetLastSpecCommand(command)
-  let t:last_spec_command = a:command
-endfunction
-
-function! RunSpecs(command)
-  execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
-endfunction
+"

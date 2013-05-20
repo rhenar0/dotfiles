@@ -17,6 +17,11 @@ export EDITOR='open -a MacVim'
 #For npm
 export PATH="/usr/local/share/npm/bin:$PATH"
 
+# don't put duplicate lines in the history. See bash(1) for more options
+export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
 # vim keybindings
 set -o vi
 bind -m vi-command i:previous-history
@@ -28,6 +33,8 @@ bind -m vi H:vi-insert-beg
 #sets up the color scheme for list export
 LSCOLORS=gxfxcxdxbxegedabagacad
 
+# seem to be issues with having a trap linked to a
+# function in a different  source?
 function __pk_trapper()
 {
   __pk_trap
