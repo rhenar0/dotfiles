@@ -47,9 +47,7 @@ function __pk_ruby_prompt()
   fi
   __pk_git_status
   CWD="$(dirs)"
-  __PK_RUBY_VERSION=$(rvm-prompt)
-  __PK_RUBY_VERSION=${__PK_RUBY_VERSION/\-2010\.02/}
-  export PS1="\n\[\e[0;31m\]${timer_show} : $__PK_RUBY_VERSION\n$(ruby ~/.bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
+  export PS1="\n\[\e[0;31m\]${timer_show} : $(rvm-prompt v g)\n$(ruby ~/.bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
 }
 
 #call this command every prompt

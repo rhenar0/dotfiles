@@ -60,10 +60,8 @@ function be()
 {
   bundle exec $@
 }
-function g()
-{
-  git $@
-}
+alias g='git'
+
 # set up auto complete for my git alias
 __git_complete g _git
 
