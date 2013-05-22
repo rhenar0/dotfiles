@@ -13,6 +13,10 @@ function nuke()
 {
   ps ax | grep $1 | awk '{print $1}' | xargs kill -9
 }
+function pf()
+{
+  ps ax | grep $1
+}
 
 function analyze_history()
 {
