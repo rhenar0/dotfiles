@@ -19,9 +19,12 @@ set number
   noremap <leader>nu :GundoToggle<cr>
   let g:ctrlp_follow_symlinks = 1
   noremap <C-b> :CtrlPBuffer<cr>
+  noremap <leader>bb :bp<cr>
+
 
 "Ruby standards
 set shiftwidth=2
+
 set tabstop=2
 " Use space instead of a tab code?
 set expandtab
@@ -36,10 +39,10 @@ set expandtab
     noremap j h
 
 "   down
-    noremap k j
+    noremap k gj
 
 "   up
-    noremap i k
+    noremap i gk
 
 "   Big up
     noremap I 22gk
@@ -174,7 +177,8 @@ set expandtab
 
 " Plugins
 " open ctag in new tab
-  map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+  "map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+  map <C-]> :tab split<CR>:exec("ltag ".expand("<cword>"))<CR>:lopen<CR>
 "   for NerdComment
     filetype plugin on
 
@@ -311,3 +315,8 @@ augroup END
     "set hlsearch
 
 "
+  map <D-i> <C-k>
+  map <D-k> <C-j>
+  map <D-j> <C-h>
+  map <D-l> <C-l>
+
