@@ -39,10 +39,10 @@ set expandtab
     noremap j h
 
 "   down
-    noremap k gj
+    noremap k j
 
 "   up
-    noremap i gk
+    noremap i k
 
 "   Big up
     noremap I 22gk
