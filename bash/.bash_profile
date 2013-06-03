@@ -22,6 +22,8 @@ export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
+export NGINX_VERSION=/usr/local/bin/nginx
+
 # vim keybindings
 set -o vi
 bind -m vi-command i:previous-history

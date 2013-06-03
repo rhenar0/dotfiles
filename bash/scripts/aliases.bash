@@ -125,7 +125,7 @@ function listings()
 }
 function screenings()
 {
-  cd ~/src/appfolio_git/screenings_app
+  cd ~/src/screenings_app
 }
 function screenings_template()
 {

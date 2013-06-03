@@ -1,6 +1,6 @@
 "motd_entries"
 {
-	"last_request_time"		"2013-05-26 19:17:01"
+	"last_request_time"		"2013-06-02 18:51:15"
 	"last_request_language"		"english"
 	"1"
 	{
