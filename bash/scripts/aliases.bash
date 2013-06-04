@@ -133,11 +133,11 @@ function screenings_template()
 }
 function vdr()
 {
-  cd ~/src/vdr/vdr_app/
+  cd ~/src/securedocs_bundle/trunk/apps/vdr
 }
 function sso()
 {
-  cd ~/src/vdr/sso_app/
+  cd ~/src/securedocs_bundle/trunk/apps/sso
 }
 function be()
 {
