@@ -20,6 +20,7 @@ set number
   let g:ctrlp_follow_symlinks = 1
   noremap <C-b> :CtrlPBuffer<cr>
   noremap <leader>bb :bp<cr>
+  noremap <D-R> :w<cr>:.Rake<cr>
 
 
 "Ruby standards
