@@ -21,6 +21,7 @@ set number
   noremap <C-b> :CtrlPBuffer<cr>
   noremap <leader>bb :bp<cr>
   noremap <D-R> :w<cr>:.Rake<cr>
+  noremap <leader>pc :!column -t<cr>gv==
 
 
 "Ruby standards
@@ -72,6 +73,7 @@ set expandtab
 
 "   play from register h
     noremap @ @h
+    noremap # @
 
 " MARKS
 
