@@ -17,6 +17,10 @@ function pf()
 {
   ps ax | grep $1
 }
+function ff()
+{
+  find . -name *$1*
+}
 
 function analyze_history()
 {
