@@ -40,3 +40,6 @@
 [submodule "vim/.vim/bundle/relops"]
 	path = vim/.vim/bundle/relops
 	url = https://github.com/vim-scripts/RelOps.git
+[submodule "vim/.vim/bundle/vim-coffee-script"]
+	path = vim/.vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
