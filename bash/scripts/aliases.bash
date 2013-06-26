@@ -17,6 +17,10 @@ function pf()
 {
   ps ax | grep $1
 }
+function df()
+{
+  find . -type d -iname *$1*
+}
 function ff()
 {
   find . -name *$1*
