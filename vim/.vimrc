@@ -23,6 +23,9 @@ set number
   noremap <D-R> :w<cr>:.Rake<cr>
   noremap <leader>pc :!column -t<cr>gv==
 
+  noremap <leader>r *#:%s///gc<left><left><left>
+  noremap <leader>v :vsp<cr>:e $MYVIMRC<cr>
+
   " DELETE HIDDEN BUFFERS
   function! DeleteInactiveBufs()
     "From tabpagebuflist() help, get a list of all buffers in all tabs

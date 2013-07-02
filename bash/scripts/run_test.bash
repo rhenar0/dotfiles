@@ -143,7 +143,7 @@ function __pk_test_test()
 
   # To use this, turn off ${__PK_RAKE_TASK} in __pk_test_run()
   # Then it will simply show the command that it will run
-  # the tests should be run in vdr, just cause
+  # the tests should be run in vdr, just 'cause
   echo "default =>"
   t
   echo "............"
