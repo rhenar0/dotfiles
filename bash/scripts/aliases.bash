@@ -163,3 +163,34 @@ function migrate()
 {
   brake db:migrate; RAILS_ENV=test brake db:migrate
 }
+function git()
+{
+  if [[ $1 = 'commit' ]]
+  then
+    cat ~/.bash/data/commit_check.txt
+    read -p "Really commit?" -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      printf "\n"
+      echo $@
+      command git $@
+    fi
+  else
+    command git $@
+  fi
+}
+function svn()
+{
+  if [[ $1 = 'commit' ]]
+  then
+    cat ~/.bash/data/commit_check.txt
+    read -p "Really commit?" -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      printf "\n"
+      command svn $@
+    fi
+  else
+    command svn $@
+  fi
+}
