@@ -57,8 +57,6 @@ set expandtab
 "   Don't complain about hiding buffers
     set hidden
 
-
-
 " Basic movement
 
 "   left
@@ -208,6 +206,7 @@ set expandtab
 " open ctag in new tab
   "map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
   map <C-]> :tab split<CR>:exec("ltag ".expand("<cword>"))<CR>:lopen<CR>
+  map <C-k> :exec("ltag ".expand("<cword>"))<CR>:lopen<CR>
 "   for NerdComment
     filetype plugin on
 
