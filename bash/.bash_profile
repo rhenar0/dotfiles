@@ -14,6 +14,9 @@ source ~/.bash/scripts/run_test.bash
 #macVim
 export EDITOR='open -a MacVim'
 
+#svn editor
+export SVN_EDITOR=vim
+
 #For npm
 export PATH="/usr/local/share/npm/bin:$PATH"
 
