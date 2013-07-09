@@ -25,6 +25,10 @@ set number
 
   noremap <leader>r *#:%s///gc<left><left><left>
   noremap <leader>v :vsp<cr>:e $MYVIMRC<cr>
+  noremap <C-tab> gt
+  noremap <C-S-tab> gT
+  noremap <C-l> <C-i>
+  noremap <C-j> <C-o>
 
   " DELETE HIDDEN BUFFERS
   function! DeleteInactiveBufs()
@@ -81,7 +85,7 @@ set expandtab
 " Control
 
 "   redo
-    noremap R <C-r>
+    noremap U <C-r>
 
 "   undo to previous file save state
     noremap <leader>u :earlier 1f<cr>
@@ -205,8 +209,8 @@ set expandtab
 " Plugins
 " open ctag in new tab
   "map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-  map <C-]> :tab split<CR>:exec("ltag ".expand("<cword>"))<CR>:lopen<CR>
-  map <C-k> :exec("ltag ".expand("<cword>"))<CR>:lopen<CR>
+  map <C-]> :tab split<CR>:exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>
+  map <C-k> :exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>
 "   for NerdComment
     filetype plugin on
 

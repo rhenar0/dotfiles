@@ -173,10 +173,10 @@ function git()
     then
       printf "\n"
       echo $@
-      command git $@
+      command git "$@"
     fi
   else
-    command git $@
+    command git "$@"
   fi
 }
 function svn()
@@ -188,9 +188,9 @@ function svn()
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
       printf "\n"
-      command svn $@
+      command svn "$@"
     fi
   else
-    command svn $@
+    command svn "$@"
   fi
 }

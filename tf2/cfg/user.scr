@@ -32,7 +32,7 @@
 
 
 // Half-Life User Info Configuration Layout Script (stores last settings chosen, too)
-// File generated:  Mon Sep 17 09:53:42 AM
+// File generated:  Sun Jul  7 14:13:40 AM
 //
 //
 // Cvar	-	Setting
@@ -470,6 +470,19 @@ DESCRIPTION INFO_OPTIONS
 			"#TF_ShowTradeRequestsFrom_NoOne" "4"
 		}
 		{ "3" }
+	}
+
+	"cl_show_market_data_on_items"
+	{
+		"#TF_ShowMarketDataOnItems"
+		"#Tooltip_ShowMarketDataOnItems"
+		{
+			LIST
+			"#TF_ShowMarketDataOnItems_Never" "0"
+			"#TF_ShowMarketDataOnItems_WhenBordersOnly" "1"
+			"#TF_ShowMarketDataOnItems_Always" "2"
+		}
+		{ "1" }
 	}
 
 }
