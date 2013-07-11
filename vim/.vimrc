@@ -52,6 +52,21 @@ set number
   endfunction
   command! Bdi :call DeleteInactiveBufs()
 
+" open ctag in new tab
+  function! OpenTagSameWindow()
+    let pk_last_line = getline(2)
+    if pk_last_line == ''
+      echo 'close the window here'
+      execute "normal :lclose<CR>"
+      echo "aaaaaaaaaaaaaaaaaaaaaaaa"
+    endif
+    echo "bbbbbbbbbbbbbbbbbb"
+  endfunction
+  "map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+  map <C-]> :tab split<CR>:exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>
+  "map <C-k> :exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>
+  map <C-k> :exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>:call OpenTagSameWindow()<cr>
+
 "Ruby standards
 set shiftwidth=2
 
@@ -207,10 +222,6 @@ set expandtab
     "  hi Search term=reverse,underline ctermfg=0 ctermbg=14 gui=underline,bold guifg=#b58900
 
 " Plugins
-" open ctag in new tab
-  "map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-  map <C-]> :tab split<CR>:exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>
-  map <C-k> :exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>
 "   for NerdComment
     filetype plugin on
 
@@ -227,17 +238,6 @@ set expandtab
 "   SuperTab Completion option to let me continue
     set completeopt=longest,menu,preview
     let g:SuperTabLongestEnhanced=0
-
-"   Custom
-  "function! g:ToggleNuMode()
-  "  if(&rnu == 1)
-  "    set nu
-  "  else
-  "    set rnu
-  "  endif
-  "endfunc
-  "noremap <leader>n :call g:ToggleNuMode()<cr>
-  "set rnu
 
 " Appearance
 " turn off scrollbars
