@@ -68,10 +68,6 @@ function ll()
   # this calls the ls defined above
   ls -al
 }
-function be()
-{
-  bundle exec $@
-}
 alias g='git'
 
 # set up auto complete for my git alias
@@ -85,8 +81,6 @@ function console()
 {
   pry -r ./config/environment
 }
-
-#from Brynjar
 function mine()
 {
   open -a RubyMine .
@@ -94,30 +88,6 @@ function mine()
 function ss()
 {
   script/start
-}
-function aggregator()
-{
-  cd ~/src/appfolio/aggregator_app/trunk
-}
-function biz()
-{
-  cd ~/src/appfolio/biz_app/trunk
-}
-function cashier()
-{
-  cd ~/src/appfolio/cashier_app/trunk
-}
-function cotasignup()
-{
-  cd ~/src/appfolio/cotasignupp_app/trunk
-}
-function cota()
-{
-  cd ~/src/appfolio_git/rentapp_bundle/apps/cota
-}
-function apply()
-{
-  cd ~/src/appfolio/rentapp_bundle/trunk/apps/apply
 }
 function property()
 {
@@ -135,10 +105,6 @@ function screenings()
 {
   cd ~/src/screenings_app
 }
-function screenings_template()
-{
-  cd ~/src/property/screenings_template/trunk
-}
 function vdr()
 {
   cd ~/src/securedocs_bundle/trunk/apps/vdr
@@ -147,13 +113,13 @@ function sso()
 {
   cd ~/src/securedocs_bundle/trunk/apps/sso
 }
-function be()
-{
-  bundle exec $@
-}
 function brake()
 {
   bundle exec rake $@
+}
+function b()
+{
+  brake "$@"
 }
 function color_test()
 {
@@ -163,12 +129,15 @@ function migrate()
 {
   brake db:migrate; RAILS_ENV=test brake db:migrate
 }
+
+# git commit checks
+
 function git()
 {
   if [[ $1 = 'commit' ]]
   then
-    cat ~/.bash/data/commit_check.txt
-    read -p "Really commit?" -n 1 -r
+    __pk_pre_commit_check
+    read -p "Ready to commit?" -n 1 -r
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
       printf "\n"
@@ -183,8 +152,8 @@ function svn()
 {
   if [[ $1 = 'commit' ]]
   then
-    cat ~/.bash/data/commit_check.txt
-    read -p "Really commit?" -n 1 -r
+    __pk_pre_commit_check
+    read -p "Ready to commit?" -n 1 -r
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
       printf "\n"
@@ -193,4 +162,12 @@ function svn()
   else
     command svn "$@"
   fi
+}
+function __pk_pre_commit_check()
+{
+  echo "----------------------"
+  ag 'binding.pry'
+  ag '_pete'
+  echo "----------------------"
+  echo "tests match changes?"
 }

@@ -1,3 +1,0 @@
-No binding.pry
-No _pete
-Run tests for corresponding files
