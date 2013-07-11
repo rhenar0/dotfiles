@@ -125,13 +125,13 @@ function __pk_test_handle_function_case()
 
 function __pk_test_run()
 {
-  __PK_RAKE_TASK="bundle exec rake test"
+  __PK_RAKE_TASK="ruby -I test"
   if [[ $1 != '' ]]
   then
-    __PK_RAKE_TASK="$__PK_RAKE_TASK TEST=$1"
+    __PK_RAKE_TASK="$__PK_RAKE_TASK $1"
     if [[ $2 != '' ]]
     then
-      __PK_RAKE_TASK="$__PK_RAKE_TASK TESTOPTS=--name=$2"
+      __PK_RAKE_TASK="$__PK_RAKE_TASK --name=$2"
     fi
   fi
   echo $__PK_RAKE_TASK
