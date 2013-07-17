@@ -21,7 +21,18 @@ set number
   noremap <C-b> :CtrlPBuffer<cr>
   noremap <leader>bb :bp<cr>
   noremap <D-R> :w<cr>:.Rake<cr>
-  noremap <leader>pc :!column -t<cr>gv==
+  noremap <leader>pc :!column -t -s ' '<cr>gv==
+  noremap <leader>pf :call PathToCurrentFile()<cr>
+  noremap <leader>pcc :call CamelCaseUnderscoredWord()<cr>
+
+  function! CamelCaseUnderscoredWord()
+    execute 's#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g'
+  endfunction
+
+  function! PathToCurrentFile()
+    execute 'cd %:p:h'
+    execute 'pwd'
+  endfunction
 
   noremap <leader>r *#:%s///gc<left><left><left>
   noremap <leader>v :vsp<cr>:e $MYVIMRC<cr>
@@ -57,10 +68,17 @@ set number
     let pk_last_line = getline(2)
     if pk_last_line == ''
       echo 'close the window here'
+      echo expand('<cword>')
       execute "normal :lclose<CR>"
       echo "aaaaaaaaaaaaaaaaaaaaaaaa"
     endif
     echo "bbbbbbbbbbbbbbbbbb"
+  endfunction
+
+  function! EchoWord()
+    let _pk_word = expand('<cword>')
+    echo _pk_word
+    exec "tag " . _pk_word
   endfunction
   "map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
   map <C-]> :tab split<CR>:exec("ltag ".expand("<cword>"))<CR>:lopen<CR><CR>

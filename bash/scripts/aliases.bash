@@ -117,6 +117,25 @@ function brake()
 {
   bundle exec rake $@
 }
+function trake()
+{
+  RAILS_ENV=test bundle exec rake $@
+}
+function mrm()
+{
+  brake db:migrate db:rollback
+  if [ $? -eq 0 ];
+  then
+    brake db:migrate
+    RAILS_ENV=test brake db:migrate db:rollback
+    RAILS_ENV=test brake db:migrate
+  fi
+}
+function broth()
+{
+  RAILS_ENV=development brake "$@"
+  RAILS_ENV=test        brake "$@"
+}
 function b()
 {
   brake "$@"

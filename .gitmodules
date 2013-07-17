@@ -52,3 +52,6 @@
 [submodule "vim/.vim/bundle/vim-textobj-rubyblock"]
 	path = vim/.vim/bundle/vim-textobj-rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock
+[submodule "vim/.vim/bundle/vcscommand.vim"]
+	path = vim/.vim/bundle/vcscommand.vim
+	url = https://github.com/vim-scripts/vcscommand.vim

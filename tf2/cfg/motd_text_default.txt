@@ -43,3 +43,5 @@ Our map rotation is:
 - Foundry
 - Doomsday
 - Kong King
+- Process
+- Standin
