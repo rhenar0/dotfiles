@@ -1,4 +1,3 @@
-
 #BEGIN PROMPT FUN STUFF
 function __pk_test_if_repo()
 {

@@ -102,8 +102,8 @@ function __pk_test_handle_function_case()
 
   __PK_REGEX="^[\ ]+def[^\n]+$1"
   __PK_TEST_FILE=$(ag "$__PK_REGEX" ./test | awk -F':' '{print $1}')
-  __PK_TEST_FUNCTION=$(ag "$__PK_REGEX" ./test | awk -F':' '{print $3}')
-  __PK_TEST_FUNCTION="${__PK_TEST_FUNCTION:6}"
+  __PK_TEST_FUNCTION=$(ag "$__PK_REGEX" ./test | awk -F':' '{print $3}' | sed 's/^ *//g')
+  __PK_TEST_FUNCTION="${__PK_TEST_FUNCTION:4}"
 
   if [[ $__PK_TEST_FILE = '' ]]
   then

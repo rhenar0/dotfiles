@@ -23,10 +23,27 @@ set number
   noremap <D-R> :w<cr>:.Rake<cr>
   noremap <leader>pc :!column -t -s ' '<cr>gv==
   noremap <leader>pf :call PathToCurrentFile()<cr>
-  noremap <leader>pcc :call CamelCaseUnderscoredWord()<cr>
+  noremap <leader>cc :call SnakeCaseToCamelCase()<cr>
+  noremap <leader>sc :call CamelCaseToSnakeCase()<cr>
 
-  function! CamelCaseUnderscoredWord()
+  " Compile Ruby code after writing (show warnings/errors)
+  function! CheckRubySyntax()
+    " don't compile if it's an Rspec file (extra warnings)
+    let name = expand('<afile>')
+    if name !~ 'spec'
+      compiler ruby
+      setlocal makeprg=ruby\ -wc\ %
+      make
+    endif
+  endfunction
+  autocmd BufWritePost *.rb call CheckRubySyntax()
+
+  function! SnakeCaseToCamelCase()
     execute 's#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g'
+  endfunction
+
+  function! CamelCaseToSnakeCase()
+    execute ':s#\C\(\<\u[a-z0-9]\+\|[a-z0-9]\+\)\(\u\)#\l\1_\l\2#g'
   endfunction
 
   function! PathToCurrentFile()
@@ -365,8 +382,8 @@ augroup END
     "set hlsearch
 
 "
-  map <D-i> <C-k>
-  map <D-k> <C-j>
-  map <D-j> <C-h>
-  map <D-l> <C-l>
+  noremap <D-i> k
+  noremap <D-k> j
+  noremap <D-j> h
+  noremap <D-l> l
 
