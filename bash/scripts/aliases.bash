@@ -25,7 +25,6 @@ function ff()
 {
   find . -name *$1*
 }
-
 function analyze_history()
 {
   history | awk '{print $2}' | awk 'BEGIN {FS="|"}{print $1}' | sort | uniq -c | sort -nr | head
@@ -45,6 +44,10 @@ function home()
 function mylog()
 {
   mvim ~/personal/notes/mylog.txt
+}
+function knowledge()
+{
+  mvim ~/personal/notes/knowledge.txt
 }
 function mylife()
 {
@@ -136,6 +139,13 @@ function broth()
   RAILS_ENV=development brake "$@"
   RAILS_ENV=test        brake "$@"
 }
+function up()
+{
+  svn up
+  bundle install
+  migrate
+  rake_cache_store
+}
 function b()
 {
   brake "$@"
@@ -187,6 +197,7 @@ function __pk_pre_commit_check()
   echo "----------------------"
   ag 'binding.pry'
   ag '_pete'
+  ag 'PETE'
   echo "----------------------"
   echo "tests match changes?"
 }

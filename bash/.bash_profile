@@ -10,6 +10,7 @@ source ~/.rvm/scripts/rvm
 source ~/.bash/scripts/aliases.bash
 source ~/.bash/scripts/prompt.bash
 source ~/.bash/scripts/run_test.bash
+source ~/.bash/scripts/rake_autocomplete.bash
 
 #macVim
 export EDITOR='open -a MacVim'
