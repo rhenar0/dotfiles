@@ -1,3 +1,10 @@
+function testy
+{
+  for i in 1 2 3 4 5 6 7 8 9 10
+  do 
+  SLEEP=$i ruby -I test test/selenium2/occupancies_test.rb --name=test_electronic_cash_payments__email_payslip
+  done
+}
 #create file and/or open in macvim
 function e
 {

@@ -354,7 +354,9 @@ augroup END
     set statusline +=%2*%m%*                "modified flag
     "set statusline +=%1*%{&ff}%*            "file format
     "set statusline +=%1*%y%*                "file type
+    "set statusline +=%{rvm#statusline()}
     set statusline +=%1*\ %<%F%*            "full path
+    set statusline +=%1*%=%5l%*             "current line
     set statusline +=%1*%=%5l%*             "current line
     set statusline +=%2*/%L%*               "total lines
     set statusline +=%1*%4v\ %*             "virtual column number

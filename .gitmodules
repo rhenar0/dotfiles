@@ -55,3 +55,9 @@
 [submodule "vim/.vim/bundle/vcscommand.vim"]
 	path = vim/.vim/bundle/vcscommand.vim
 	url = https://github.com/vim-scripts/vcscommand.vim
+[submodule "vim/.vim/bundle/vim-bundler"]
+	path = vim/.vim/bundle/vim-bundler
+	url = https://github.com/tpope/vim-bundler
+[submodule "vim/.vim/bundle/vim-rvm"]
+	path = vim/.vim/bundle/vim-rvm
+	url = https://github.com/tpope/vim-rvm
