@@ -23,8 +23,8 @@ set number
   noremap <D-R> :w<cr>:.Rake<cr>
   noremap <leader>pc :!column -t -s ' '<cr>gv==
   noremap <leader>pf :call PathToCurrentFile()<cr>
-  noremap <leader>cc :call SnakeCaseToCamelCase()<cr>
-  noremap <leader>sc :call CamelCaseToSnakeCase()<cr>
+  noremap <leader>pcc :call SnakeCaseToCamelCase()<cr>
+  noremap <leader>psc :call CamelCaseToSnakeCase()<cr>
 
   " Compile Ruby code after writing (show warnings/errors)
   function! CheckRubySyntax()
