@@ -137,7 +137,6 @@ function mrm()
   if [ $? -eq 0 ];
   then
     brake db:migrate
-    RAILS_ENV=test brake db:migrate db:rollback
     RAILS_ENV=test brake db:migrate
   fi
 }
