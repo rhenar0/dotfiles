@@ -148,7 +148,7 @@ function broth()
 function up()
 {
   svn up
-  bundle install
+  bundle install --local
   migrate
   rake_cache_store
 }
