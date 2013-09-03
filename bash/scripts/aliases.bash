@@ -115,6 +115,10 @@ function screenings()
 {
   cd ~/src/screenings_app
 }
+function rentapp()
+{
+  cd ~/src/rentapp_bundle/apps/cota
+}
 function vdr()
 {
   cd ~/src/securedocs_bundle/trunk/apps/vdr
