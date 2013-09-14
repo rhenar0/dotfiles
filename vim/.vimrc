@@ -16,6 +16,7 @@ set number
   ab PRY require 'pry';binding.pry
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
+  let g:ctrlp_max_depth = 50
   noremap <leader>nu :GundoToggle<cr>
   let g:ctrlp_follow_symlinks = 1
   noremap <C-b> :CtrlPBuffer<cr>
@@ -36,7 +37,7 @@ set number
       make
     endif
   endfunction
-  autocmd BufWritePost *.rb call CheckRubySyntax()
+  "autocmd BufWritePost *.rb call CheckRubySyntax()
 
   function! SnakeCaseToCamelCase()
     execute 's#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g'
