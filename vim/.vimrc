@@ -212,7 +212,7 @@ set expandtab
     set vb
 
 "   let underscore separate words
-    set iskeyword=@,_,48-57,192-255
+    set iskeyword=@,?,!,_,48-57,192-255
 
 "   Turn on persistent undo
     set undofile
