@@ -101,15 +101,15 @@ function ss()
 }
 function property()
 {
-  cd ~/src/property/property_bundle/trunk/apps/property
+  cd ~/src/property_bundle/apps/property
 }
 function tportal()
 {
-  cd ~/src/property/property_bundle/trunk/apps/tportal
+  cd ~/src/property_bundle/apps/tportal
 }
 function listings()
 {
-  cd ~/src/property/property_bundle/trunk/apps/listings
+  cd ~/src/property_bundle/apps/listings
 }
 function screenings()
 {

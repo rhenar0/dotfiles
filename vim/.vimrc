@@ -10,6 +10,7 @@ set number
 " APP SPECIFIC
   noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
   noremap <C-v> :CtrlP ~/src/securedocs_bundle/trunk<cr>
+  noremap <C-f> :CtrlP ~/src/favoritable/property<cr>
 
 "
 " EXPERIMENTAL
@@ -17,8 +18,10 @@ set number
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
   let g:ctrlp_max_depth = 50
+  let g:ctrlp_max_files=20000
   noremap <leader>nu :GundoToggle<cr>
   let g:ctrlp_follow_symlinks = 1
+  let g:ctrlp_clear_cache_on_exit = 0
   noremap <C-b> :CtrlPBuffer<cr>
   noremap <leader>bb :bp<cr>
   noremap <D-R> :w<cr>:.Rake<cr>
@@ -116,12 +119,15 @@ set expandtab
 
 "   left
     noremap j h
+    "noremap <A-j> h
 
 "   down
     noremap k j
+    "noremap <A-k> j
 
 "   up
     noremap i k
+    "noremap <A-i> k
 
 "   Big up
     noremap I 22gk
@@ -131,7 +137,9 @@ set expandtab
 
 "   Fix insert
     noremap h i
+    "noremap <A-h> i
     noremap H I
+    "noremap <A-H> I
 
 " Control
 

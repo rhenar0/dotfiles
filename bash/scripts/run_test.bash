@@ -1,3 +1,7 @@
+function tall()
+{
+  find $1 -name *$2*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require f}"
+}
 function __pk_test_find_path_to_test_folder
 {
   __PK_PATH_REGEX=$(ls -al $__PK_RELATIVE_PATH | grep "^dr" | grep "\ test$")

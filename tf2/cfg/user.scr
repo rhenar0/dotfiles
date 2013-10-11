@@ -32,7 +32,7 @@
 
 
 // Half-Life User Info Configuration Layout Script (stores last settings chosen, too)
-// File generated:  Sun Jul  7 14:13:40 AM
+// File generated:  Thu Oct  3 12:45:16 AM
 //
 //
 // Cvar	-	Setting
@@ -75,6 +75,14 @@ DESCRIPTION INFO_OPTIONS
 	{
 		"#TF_CombatText"
 		"#Tooltip_CombatText"
+		{ BOOL }
+		{ "1" }
+	}
+
+	"hud_combattext_doesnt_block_overhead_text"
+	{
+		"#TF_CombatTextDoesntBlock"
+		"#Tooltip_CombatTextDoesntBlock"
 		{ BOOL }
 		{ "1" }
 	}
@@ -211,12 +219,20 @@ DESCRIPTION INFO_OPTIONS
 		{ "1" }
 	}
 
+	"cl_hud_playerclass_use_playermodel"
+	{
+		"#GameUI_HudPlayerClassUsePlayerModel"
+		"#ToolTip_HudPlayerClassUsePlayerModel"
+		{ BOOL }
+		{ "1" }
+	}
+
 	"viewmodel_fov"
 	{
 		"#TF_viewmodelfov_option"
 		"#Tooltip_viewmodelfov_option"
 		{ SLIDER 54 70 }
-		{ "65" }
+		{ "54" }
 	}
 
 	"tf_spectator_target_location"
@@ -280,6 +296,14 @@ DESCRIPTION INFO_OPTIONS
 			"#TF_Pyrovision_Enable" "1"
 		}
 		{ "1" }
+	}
+
+	"tf_romevision_opt_in"
+	{
+		"#TF_RomeVisionOptIn"
+		"#Tooltip_RomeVisionOptIn"
+		{ BOOL }
+		{ "0" }
 	}
 
 	"category4"
@@ -425,7 +449,7 @@ DESCRIPTION INFO_OPTIONS
 		"#GameUI_DisableSprays"
 		"#Tooltip_DisableSprays"
 		{ BOOL }
-		{ "0" }
+		{ "1" }
 	}
 
 	"sb_close_browser_on_connect"

@@ -12,6 +12,8 @@ source ~/.bash/scripts/prompt.bash
 source ~/.bash/scripts/run_test.bash
 source ~/.bash/scripts/rake_autocomplete.bash
 
+## weird
+#export SSL_CERT_FILE=~/appfolio_ca.crt
 #macVim
 export EDITOR='open -a MacVim'
 
