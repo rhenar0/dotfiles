@@ -69,6 +69,10 @@ function ls()
   # command means don't use user-defined functions
   command ls -G $@
 }
+function mouse_locator()
+{
+  /Users/pete/Library/PreferencePanes/MouseLocator.prefPane/Contents/Resources/MouseLocatorAgent.app/Contents/MacOS/MouseLocatorAgent -psn_0_6026687
+}
 function cd..()
 {
   cd ..
@@ -151,7 +155,7 @@ function broth()
 }
 function up()
 {
-  svn up
+  git svn rebase  
   bundle install --local
   migrate
   rake_cache_store
@@ -211,7 +215,7 @@ function __pk_pre_commit_check()
 {
   echo "----------------------"
   ag 'binding.pry'
-  ag '_pete'
+  ag '_pete[^r]'
   ag 'PETE'
   echo "----------------------"
   echo "tests match changes?"
