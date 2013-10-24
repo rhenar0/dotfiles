@@ -30,7 +30,7 @@ function df()
 }
 function ff()
 {
-  find . -name *$1*
+  find . -name *$1* 2> /dev/null
 }
 function analyze_history()
 {
@@ -83,6 +83,11 @@ function ll()
   ls -al
 }
 alias g='git'
+
+function diffme()
+{
+  git log --oneline HEAD ^master
+}
 
 # set up auto complete for my git alias
 __git_complete g _git
