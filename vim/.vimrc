@@ -14,7 +14,7 @@ set number
 
 "
 " EXPERIMENTAL
-  set shell=/bin/sh
+  "set shell=/bin/sh
   ab PRY require 'pry';binding.pry
   noremap <leader>pp :cd ~/src/property_bundle/apps/property
   noremap <leader>nt :NERDTreeFind<cr>

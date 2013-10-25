@@ -42,7 +42,8 @@ function __pk_ruby_prompt()
   __pk_timer_stop
   if (( "${timer_show}" > "4" ))
   then
-    terminal-notifier -message "'${__PK_COMMAND_HISTORY[1]}' finished." > /dev/null
+    #terminal-notifier -message "'${__PK_COMMAND_HISTORY[1]}' finished." > /dev/null
+    echo 'notify' 
   fi
   __pk_git_status
   CWD="$(dirs)"
