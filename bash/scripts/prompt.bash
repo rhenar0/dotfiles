@@ -1,4 +1,7 @@
 #BEGIN PROMPT FUN STUFF
+__PK_TERMINAL_NOTIFIER_PATH='/Users/pete/.rvm/gems/ruby-2.0.0-p353/gems/terminal-notifier-1.5.1/bin/terminal-notifier'
+__PK_RUBY_PATH='/Users/pete/.rvm/rubies/ruby-2.0.0-p353/bin/ruby'
+
 function __pk_test_if_repo()
 {
   git branch > /dev/null 2>&1
@@ -42,12 +45,11 @@ function __pk_ruby_prompt()
   __pk_timer_stop
   if (( "${timer_show}" > "4" ))
   then
-    #terminal-notifier -message "'${__PK_COMMAND_HISTORY[1]}' finished." > /dev/null
-    echo 'notify' 
+    $($__PK_TERMINAL_NOTIFIER_PATH -message "'${__PK_COMMAND_HISTORY[1]}' finished." > /dev/null)
   fi
   __pk_git_status
   CWD="$(dirs)"
-  export PS1="\n\[\e[0;31m\]${timer_show} : $(rvm-prompt v g)\n$(ruby ~/.bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
+  export PS1="\n\[\e[0;31m\]${timer_show} : $(rvm-prompt)\n$($__PK_RUBY_PATH ~/.bash/scripts/ruby_prompt.rb ${CWD})${BRANCH}:\[\e[0;32m\]"
 }
 
 #call this command every prompt

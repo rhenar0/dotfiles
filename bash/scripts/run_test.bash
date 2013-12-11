@@ -1,6 +1,18 @@
+function tall_unit()
+{
+  find test/unit test/functional -name *$1*_test.rb
+  find test/unit test/functional -name *$1*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require f}" 2>/dev/null
+}
+function tall_selenium()
+{
+  find test/selenium test/selenium2 test/selenium_flaky -name *$1*_test.rb
+  find test/selenium test/selenium2 test/selenium_flaky -name *$1*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require f}" 2>/dev/null
+}
+
 function tall()
 {
-  find $1 -name *$2*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require f}"
+  tall_unit $1
+  tall_selenium $1
 }
 function __pk_test_find_path_to_test_folder
 {

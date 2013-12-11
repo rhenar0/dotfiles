@@ -16,6 +16,10 @@ function e
     mvim $1;
   fi
 }
+function retag()
+{
+  rm tags TAGS 2> /dev/null; ctags --exclude=.git --exclude=tmp --exclude='*.log' -R * `bundle show --paths` 2> /dev/null
+}
 function nuke()
 {
   ps ax | grep $1 | awk '{print $1}' | xargs kill -9
