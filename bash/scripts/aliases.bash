@@ -1,10 +1,3 @@
-function testy
-{
-  for i in 1 2 3 4 5 6 7 8 9 10
-  do 
-  SLEEP=$i ruby -I test test/selenium2/occupancies_test.rb --name=test_electronic_cash_payments__email_payslip
-  done
-}
 #create file and/or open in macvim
 function e
 {
@@ -16,9 +9,29 @@ function e
     mvim $1;
   fi
 }
+function repeat()
+{
+  for i in $(seq $1)
+  do
+    echo "${@:2}"
+    ${@:2}
+  done
+}
+function retag()
+{
+  rm tags TAGS 2> /dev/null; ctags --exclude=.git --exclude=tmp --exclude='*.log' -R * `bundle show --paths`
+}
 function nuke()
 {
   ps ax | grep $1 | awk '{print $1}' | xargs kill -9
+}
+function nuke_server()
+{
+  nuke passenger
+  nuke nginx
+  nuke multiplexer_ctl
+  nuke scheduler_ctl
+  nuke Terminal
 }
 function pf()
 {
@@ -30,7 +43,7 @@ function df()
 }
 function ff()
 {
-  find . -name *$1*
+  find . -name *$1* 2> /dev/null
 }
 function analyze_history()
 {
@@ -44,10 +57,6 @@ function koutouki()
 {
   cd ~/home/koutouki
 }
-function home()
-{
-  cd ~/home
-}
 function mylog()
 {
   mvim ~/personal/notes/mylog.txt
@@ -56,13 +65,13 @@ function knowledge()
 {
   mvim ~/personal/notes/knowledge.txt
 }
+function todo()
+{
+  mvim ~/personal/notes/todo.txt
+}
 function mylife()
 {
   mvim ~/Google\ Drive/journal.txt
-}
-function notes()
-{
-  mvim ~/home/notes/juntobox.txt
 }
 function ls()
 {
@@ -71,7 +80,7 @@ function ls()
 }
 function mouse_locator()
 {
-  /Users/pete/Library/PreferencePanes/MouseLocator.prefPane/Contents/Resources/MouseLocatorAgent.app/Contents/MacOS/MouseLocatorAgent -psn_0_6026687
+  nohup /Users/pete/Library/PreferencePanes/MouseLocator.prefPane/Contents/Resources/MouseLocatorAgent.app/Contents/MacOS/MouseLocatorAgent -psn_0_6026687 &
 }
 function cd..()
 {
@@ -80,9 +89,14 @@ function cd..()
 function ll()
 {
   # this calls the ls defined above
-  ls -al
+  ls -al $@
 }
 alias g='git'
+
+function diffme()
+{
+  git log --oneline HEAD ^master
+}
 
 # set up auto complete for my git alias
 __git_complete g _git
@@ -94,10 +108,6 @@ function quiet()
 function console()
 {
   pry -r ./config/environment
-}
-function mine()
-{
-  open -a RubyMine .
 }
 function ss()
 {
@@ -119,18 +129,6 @@ function screenings()
 {
   cd ~/src/screenings_app
 }
-function rentapp()
-{
-  cd ~/src/rentapp_bundle/apps/cota
-}
-function vdr()
-{
-  cd ~/src/securedocs_bundle/trunk/apps/vdr
-}
-function sso()
-{
-  cd ~/src/securedocs_bundle/trunk/apps/sso
-}
 function brake()
 {
   bundle exec rake $@
@@ -144,8 +142,7 @@ function mrm()
   brake db:migrate db:rollback
   if [ $? -eq 0 ];
   then
-    brake db:migrate
-    RAILS_ENV=test brake db:migrate
+    broth db:migrate
   fi
 }
 function broth()
@@ -153,13 +150,50 @@ function broth()
   RAILS_ENV=development brake "$@"
   RAILS_ENV=test        brake "$@"
 }
+
+function up_app()
+{
+  _GEM_STRING='.*'
+  _GEM_STRING+=$1
+  _GEM_STRING+='.*.gem'
+  _MIGRATE_STRING='.*'
+  _MIGRATE_STRING+=$1
+  _MIGRATE_STRING+='.*db/migrate'
+
+  $1;
+
+  if grep --quiet $_GEM_STRING ~/tmp/up.log;
+  then
+    echo 'bundle'
+    bundle install --local
+  else
+    echo 'no bundle'
+  fi
+
+  if grep --quiet $_MIGRATE_STRING ~/tmp/up.log;
+  then
+    echo 'migrate'
+    migrate
+  else
+    echo 'no migrate'
+  fi
+}
+
+
 function up()
 {
-  git svn rebase  
-  bundle install --local
-  migrate
-  rake_cache_store
+  echo 'Rebasing'
+  git svn rebase > ~/tmp/up.log
+
+  echo 'update listings'
+  up_app listings;
+  echo 'update property'
+  up_app property;
+  echo 'update tportal'
+  up_app tportal;
+  property;
 }
+
 function b()
 {
   brake "$@"
@@ -175,7 +209,7 @@ function selenium_restart()
 }
 function migrate()
 {
-  brake db:migrate; RAILS_ENV=test brake db:migrate
+  broth db:migrate;
 }
 
 # git commit checks
@@ -219,4 +253,5 @@ function __pk_pre_commit_check()
   ag 'PETE'
   echo "----------------------"
   echo "tests match changes?"
+  git status
 }

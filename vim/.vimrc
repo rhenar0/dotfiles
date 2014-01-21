@@ -9,12 +9,14 @@ set number
   let mapleader = ","
 " APP SPECIFIC
   noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
-  noremap <C-v> :CtrlP ~/src/securedocs_bundle/trunk<cr>
+  "noremap <C-v> :CtrlP ~/src/securedocs_bundle/trunk<cr>
   noremap <C-f> :CtrlP ~/src/favoritable/property<cr>
 
 "
 " EXPERIMENTAL
+  "set shell=/bin/sh
   ab PRY require 'pry';binding.pry
+  noremap <leader>pp :cd ~/src/property_bundle/apps/property
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
   let g:ctrlp_max_depth = 50
@@ -29,8 +31,20 @@ set number
   noremap <leader>pf :call PathToCurrentFile()<cr>
   noremap <leader>pcc :call SnakeCaseToCamelCase()<cr>
   noremap <leader>psc :call CamelCaseToSnakeCase()<cr>
+  noremap <leader>fp  :let @" = expand("%:p")
 
-  " Compile Ruby code after writing (show warnings/errors)
+  command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+  function! QuickfixFilenames()
+    " pk: look into argdo
+    " Building a hash ensures we get each buffer only once
+    let buffer_numbers = {}
+    for quickfix_item in getqflist()
+      let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+    endfor
+    return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+  endfunction
+
+" Compile Ruby code after writing (show warnings/errors)
   function! CheckRubySyntax()
     " don't compile if it's an Rspec file (extra warnings)
     let name = expand('<afile>')
@@ -91,9 +105,9 @@ set number
       echo 'close the window here'
       echo expand('<cword>')
       execute "normal :lclose<CR>"
-      echo "aaaaaaaaaaaaaaaaaaaaaaaa"
+      echo "only one line"
     endif
-    echo "bbbbbbbbbbbbbbbbbb"
+    echo "more than one line"
   endfunction
 
   function! EchoWord()
@@ -229,16 +243,17 @@ set expandtab
     set undodir=~/.vimundo/
 
 "   maximum number of changes that can be undone
-    set undolevels=1000
+    set undolevels=10000
 
 "   maximum number lines to save for undo on a buffer reload
-    set undoreload=10000
+    set undoreload=100000
 
 "   Enter command mode when focus lost
     au FocusLost,TabLeave * call feedkeys("\<C-\>\<C-n>")
+    au FocusLost * silent! wa
 
 "   Strip trailing whitespace on write
-    "autocmd BufWritePre * :%s/\s\+$//e
+    autocmd BufWritePre * :%s/\s\+$//e
 
     noremap <leader>w :%s/\s\+$//e<cr>
 

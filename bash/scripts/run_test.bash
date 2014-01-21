@@ -1,6 +1,30 @@
+function tall_unit()
+{
+  find test/unit test/functional -name *$1*_test.rb
+  find test/unit test/functional test/decorators -name *$1*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
+}
+
+function tall_selenium()
+{
+  find test/selenium test/selenium2 test/selenium_flaky -name *$1*_test.rb
+  find test/selenium test/selenium2 test/selenium_flaky -name *$1*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
+}
+
 function tall()
 {
-  find $1 -name *$2*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require f}"
+  tall_unit $1
+  tall_selenium $1
+}
+function tmatch()
+{
+  find $1 -name *$2*_test.rb
+  find $1 -name *$2*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
+}
+
+function tstatus()
+{
+  git st | grep '_test.rb' | grep -v selenium |  cut -d' ' -f2-
+  git st | grep '_test.rb' | grep -v selenium |  cut -d' ' -f2- | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
 }
 function __pk_test_find_path_to_test_folder
 {
@@ -129,7 +153,7 @@ function __pk_test_handle_function_case()
 
 function __pk_test_run()
 {
-  __PK_RAKE_TASK="ruby -I test"
+  __PK_RAKE_TASK="bin/testunit -I test"
   if [[ $1 != '' ]]
   then
     __PK_RAKE_TASK="$__PK_RAKE_TASK $1"
