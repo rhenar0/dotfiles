@@ -31,6 +31,7 @@ set number
   noremap <leader>pf :call PathToCurrentFile()<cr>
   noremap <leader>pcc :call SnakeCaseToCamelCase()<cr>
   noremap <leader>psc :call CamelCaseToSnakeCase()<cr>
+  noremap <leader>fp  :let @" = expand("%:p")
 
   command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
   function! QuickfixFilenames()
@@ -252,7 +253,7 @@ set expandtab
     au FocusLost * silent! wa
 
 "   Strip trailing whitespace on write
-    "autocmd BufWritePre * :%s/\s\+$//e
+    autocmd BufWritePre * :%s/\s\+$//e
 
     noremap <leader>w :%s/\s\+$//e<cr>
 
