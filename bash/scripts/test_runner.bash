@@ -1,13 +1,18 @@
+function __test_runner()
+{
+  ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}" $@
+}
+export -f __test_runner
 function tall_unit()
 {
   find test/unit test/functional -name *$1*_test.rb
-  find test/unit test/functional test/decorators -name *$1*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
+  find test/unit test/functional test/decorators -name *$1*_test.rb | xargs -t bash -c '__test_runner "$@"'
 }
 
 function tall_selenium()
 {
   find test/selenium test/selenium2 test/selenium_flaky -name *$1*_test.rb
-  find test/selenium test/selenium2 test/selenium_flaky -name *$1*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
+  find test/selenium test/selenium2 test/selenium_flaky -name *$1*_test.rb | xargs -t bash -c '__test_runner "$@"'
 }
 
 function tall()
@@ -15,16 +20,17 @@ function tall()
   tall_unit $1
   tall_selenium $1
 }
+
 function tmatch()
 {
   find $1 -name *$2*_test.rb
-  find $1 -name *$2*_test.rb | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
+  find $1 -name *$2*_test.rb | xargs -t bash -c '__test_runner "$@"'
 }
 
 function tstatus()
 {
   git st | grep '_test.rb' | grep -v selenium |  cut -d' ' -f2-
-  git st | grep '_test.rb' | grep -v selenium |  cut -d' ' -f2- | xargs -t ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}"
+  git st | grep '_test.rb' | grep -v selenium |  cut -d' ' -f2- | xargs -t bash -c '__test_runner "$@"'
 }
 function __pk_test_find_path_to_test_folder
 {
@@ -56,7 +62,11 @@ function t()
 
   cd $__PK_RELATIVE_PATH
 
-  if [[ $1 = '' ]]
+  if [[ $2 != '' ]]
+  then
+    bash -c '__test_runner "$@"'
+    return
+  elif [[ $1 = '' ]]
   then
     __pk_test_handle_default
 

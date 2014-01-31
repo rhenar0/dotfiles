@@ -23,7 +23,7 @@ function retag()
 }
 function nuke()
 {
-  ps ax | grep $1 | awk '{print $1}' | xargs kill -9
+killall -15 $1 2> /dev/null || killall -2 $1 2> /dev/null || killall -1 $1 2> /dev/null || killall -9 $1 2> /dev/null
 }
 function nuke_server()
 {
@@ -31,7 +31,7 @@ function nuke_server()
   nuke nginx
   nuke multiplexer_ctl
   nuke scheduler_ctl
-  nuke Terminal
+  osascript -e 'tell application "Terminal" to quit'; done
 }
 function pf()
 {
@@ -149,6 +149,11 @@ function broth()
 {
   RAILS_ENV=development brake "$@"
   RAILS_ENV=test        brake "$@"
+}
+
+function st()
+{
+   git status
 }
 
 function up_app()
