@@ -23,15 +23,19 @@ function retag()
 }
 function nuke()
 {
+  ps ax | grep $1 | awk '{print $1}' | xargs kill -9
+}
+function smart_bomb()
+{
 killall -15 $1 2> /dev/null || killall -2 $1 2> /dev/null || killall -1 $1 2> /dev/null || killall -9 $1 2> /dev/null
 }
 function nuke_server()
 {
-  nuke passenger
-  nuke nginx
-  nuke multiplexer_ctl
-  nuke scheduler_ctl
-  osascript -e 'tell application "Terminal" to quit'; done
+  smart_bomb passenger
+  smart_bomb nginx
+  smart_bomb multiplexer_ctl
+  smart_bomb scheduler_ctl
+  osascript -e 'tell application "Terminal" to quit'
 }
 function pf()
 {
@@ -69,6 +73,10 @@ function todo()
 {
   mvim ~/personal/notes/todo.txt
 }
+function fff()
+{
+  mvim ~/personal/notes/fff.txt
+}
 function mylife()
 {
   mvim ~/Google\ Drive/journal.txt
@@ -80,7 +88,7 @@ function ls()
 }
 function mouse_locator()
 {
-  nohup /Users/pete/Library/PreferencePanes/MouseLocator.prefPane/Contents/Resources/MouseLocatorAgent.app/Contents/MacOS/MouseLocatorAgent -psn_0_6026687 &
+  nohup /Users/pete/Library/PreferencePanes/MouseLocator.prefPane/Contents/Resources/MouseLocatorAgent.app/Contents/MacOS/MouseLocatorAgent -psn_0_6026687 > /dev/null &
 }
 function cd..()
 {
@@ -115,15 +123,15 @@ function ss()
 }
 function property()
 {
-  cd ~/src/property_bundle/apps/property
+  cd ~/src/apm_bundle/apps/property
 }
 function tportal()
 {
-  cd ~/src/property_bundle/apps/tportal
+  cd ~/src/apm_bundle/apps/tportal
 }
 function listings()
 {
-  cd ~/src/property_bundle/apps/listings
+  cd ~/src/apm_bundle/apps/listings
 }
 function screenings()
 {

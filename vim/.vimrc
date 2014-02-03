@@ -7,16 +7,11 @@ filetype indent on
 set number
 " LEADER
   let mapleader = ","
-" APP SPECIFIC
-  noremap <C-u> :CtrlP ~/src/property/property_bundle/trunk/apps/property<cr>
-  "noremap <C-v> :CtrlP ~/src/securedocs_bundle/trunk<cr>
-  noremap <C-f> :CtrlP ~/src/favoritable/property<cr>
-
 "
 " EXPERIMENTAL
   "set shell=/bin/sh
   ab PRY require 'pry';binding.pry
-  noremap <leader>pp :cd ~/src/property_bundle/apps/property
+  noremap <leader>pp :cd ~/src/apm_bundle/apps/property
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
   let g:ctrlp_max_depth = 50
@@ -26,7 +21,7 @@ set number
   let g:ctrlp_clear_cache_on_exit = 0
   noremap <C-b> :CtrlPBuffer<cr>
   noremap <leader>bb :bp<cr>
-  noremap <D-R> :w<cr>:.Rake<cr>
+  noremap <D-R> :wa<cr>:.Rake<cr>
   noremap <leader>pc :!column -t -s ' '<cr>gv==
   noremap <leader>pf :call PathToCurrentFile()<cr>
   noremap <leader>pcc :call SnakeCaseToCamelCase()<cr>
