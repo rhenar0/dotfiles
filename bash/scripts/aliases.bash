@@ -193,10 +193,16 @@ function up_app()
 }
 
 
+function rebase(){
+  git co master &&
+  up &&
+  git co - &&
+  git rebase master
+}
 function up()
 {
-  echo 'Rebasing'
-  git svn rebase > ~/tmp/up.log
+  echo 'Pull' 
+  git pull origin master > ~/tmp/up.log
 
   echo 'update listings'
   up_app listings;

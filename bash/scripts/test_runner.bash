@@ -3,6 +3,13 @@ function __test_runner()
   ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}" $@
 }
 export -f __test_runner
+
+function __test_runner_named()
+{
+  ruby -I test $@
+}
+export -f __test_runner_named
+
 function tall_unit()
 {
   find test/unit test/functional -name *$1*_test.rb
@@ -62,7 +69,7 @@ function t()
 
   cd $__PK_RELATIVE_PATH
 
-  if [[ $2 != '' ]]
+  if ! [[ $2 = '' || $2 =~ '--name' ]]
   then
     bash -c '__test_runner "$@"'
     return
@@ -163,7 +170,7 @@ function __pk_test_handle_function_case()
 
 function __pk_test_run()
 {
-  __PK_RAKE_TASK="bin/testunit -I test"
+  __PK_RAKE_TASK="__test_runner_named"
   if [[ $1 != '' ]]
   then
     __PK_RAKE_TASK="$__PK_RAKE_TASK $1"

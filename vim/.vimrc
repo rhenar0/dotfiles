@@ -27,6 +27,8 @@ set number
   noremap <leader>pcc :call SnakeCaseToCamelCase()<cr>
   noremap <leader>psc :call CamelCaseToSnakeCase()<cr>
   noremap <leader>fp  :let @" = expand("%:p")
+  " may cause problems:
+  "set shell=bash\ --login
 
   command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
   function! QuickfixFilenames()
@@ -248,7 +250,7 @@ set expandtab
     au FocusLost * silent! wa
 
 "   Strip trailing whitespace on write
-    autocmd BufWritePre * :%s/\s\+$//e
+    "autocmd BufWritePre * :%s/\s\+$//e
 
     noremap <leader>w :%s/\s\+$//e<cr>
 
@@ -375,6 +377,7 @@ augroup END
     "set statusline +=%1*%y%*                "file type
     "set statusline +=%{rvm#statusline()}
     set statusline +=%1*\ %<%F%*            "full path
+    set statusline +=%1*%=%5{getcwd()}%*    "pwd
     set statusline +=%1*%=%5l%*             "current line
     set statusline +=%1*%=%5l%*             "current line
     set statusline +=%2*/%L%*               "total lines
