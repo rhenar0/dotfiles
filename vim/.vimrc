@@ -27,8 +27,7 @@ set number
   noremap <leader>pcc :call SnakeCaseToCamelCase()<cr>
   noremap <leader>psc :call CamelCaseToSnakeCase()<cr>
   noremap <leader>fp  :let @" = expand("%:p")
-  " may cause problems:
-  "set shell=bash\ --login
+  " noremap <leader>fd :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch<cr>
 
   command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
   function! QuickfixFilenames()
@@ -250,7 +249,7 @@ set expandtab
     au FocusLost * silent! wa
 
 "   Strip trailing whitespace on write
-    "autocmd BufWritePre * :%s/\s\+$//e
+    autocmd BufWritePre * :%s/\s\+$//e
 
     noremap <leader>w :%s/\s\+$//e<cr>
 
@@ -288,7 +287,7 @@ set expandtab
     au BufRead,BufNewFile *.js set ft=javascript syntax=jquery
 
 "   Handlebars syntax
-    au BufRead,BufNewFile *.hbs set ft=handlebars syntax=handlebars
+    au BufRead,BufNewFile *.hbs set ft=handlebars syntax=mustache
 
 
 "   SuperTab Completion option to let me continue
@@ -356,8 +355,8 @@ augroup END
 "   Indent plug-in appearance
     let g:indent_guides_guide_size=2
     let g:indent_guides_auto_colors = 0
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#002D38 ctermbg=3
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#003340 ctermbg=4
+    "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#002D38 ctermbg=3
+    "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#003340 ctermbg=4
 
 "   Turn on Indentation
     autocmd VimEnter * :IndentGuidesEnable
@@ -377,7 +376,6 @@ augroup END
     "set statusline +=%1*%y%*                "file type
     "set statusline +=%{rvm#statusline()}
     set statusline +=%1*\ %<%F%*            "full path
-    set statusline +=%1*%=%5{getcwd()}%*    "pwd
     set statusline +=%1*%=%5l%*             "current line
     set statusline +=%1*%=%5l%*             "current line
     set statusline +=%2*/%L%*               "total lines

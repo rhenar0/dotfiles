@@ -194,22 +194,22 @@ function up_app()
 
 
 function rebase(){
-  git co master &&
+git co master &&
   up &&
   git co - &&
   git rebase master
 }
 function up()
 {
-  echo 'Pull' 
-  git pull origin master > ~/tmp/up.log
-
-  echo 'update listings'
-  up_app listings;
-  echo 'update property'
-  up_app property;
-  echo 'update tportal'
-  up_app tportal;
+  echo 'Pull' &&
+  git pull origin master > ~/tmp/up.log &&
+  git reset --hard origin/master &&
+  echo 'update listings' &&
+  up_app listings &&
+  echo 'update property' &&
+  up_app property &&
+  echo 'update tportal' &&
+  up_app tportal &&
   property;
 }
 
@@ -231,24 +231,24 @@ function migrate()
   broth db:migrate;
 }
 
-# git commit checks
+## git commit checks
 
-function git()
-{
-  if [[ $1 = 'commit' ]]
-  then
-    __pk_pre_commit_check
-    read -p "Ready to commit?" -n 1 -r
-    if [[ $REPLY =~ ^[Yy]$ ]]
-    then
-      printf "\n"
-      echo $@
-      command git "$@"
-    fi
-  else
-    command git "$@"
-  fi
-}
+#function git()
+#{
+#  if [[ $1 = 'commit' ]]
+#  then
+#    __pk_pre_commit_check
+#    read -p "Ready to commit?" -n 1 -r
+#    if [[ $REPLY =~ ^[Yy]?$ ]]
+#    then
+#      printf "\n"
+#      echo $@
+#      command git "$@"
+#    fi
+#  else
+#    command git "$@"
+#  fi
+#}
 function svn()
 {
   if [[ $1 = 'commit' ]]
@@ -272,5 +272,4 @@ function __pk_pre_commit_check()
   ag 'PETE'
   echo "----------------------"
   echo "tests match changes?"
-  git status
 }

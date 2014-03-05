@@ -61,3 +61,6 @@
 [submodule "vim/.vim/bundle/vim-rvm"]
 	path = vim/.vim/bundle/vim-rvm
 	url = https://github.com/tpope/vim-rvm
+[submodule "vim/.vim/bundle/mustache"]
+	path = vim/.vim/bundle/mustache
+	url = git://github.com/mustache/vim-mustache-handlebars.git

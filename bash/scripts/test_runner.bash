@@ -1,12 +1,14 @@
 function __test_runner()
 {
   ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}" $@
+  bin/testunit $@
 }
 export -f __test_runner
 
 function __test_runner_named()
 {
-  ruby -I test $@
+  #ruby -I test $@
+  bin/testunit $@
 }
 export -f __test_runner_named
 
@@ -36,8 +38,8 @@ function tmatch()
 
 function tstatus()
 {
-  git st | grep '_test.rb' | grep -v selenium |  cut -d' ' -f2-
-  git st | grep '_test.rb' | grep -v selenium |  cut -d' ' -f2- | xargs -t bash -c '__test_runner "$@"'
+  git st | grep '_test.rb' | grep -v deleted | grep -v selenium |  cut -d' ' -f2-
+  git st | grep '_test.rb' | grep -v deleted | grep -v selenium |  cut -d' ' -f2- | xargs -t bash -c '__test_runner "$@"'
 }
 function __pk_test_find_path_to_test_folder
 {
@@ -181,44 +183,4 @@ function __pk_test_run()
   fi
   echo $__PK_RAKE_TASK
   ${__PK_RAKE_TASK}
-}
-
-function __pk_test_test()
-{
-
-  # To use this, turn off ${__PK_RAKE_TASK} in __pk_test_run()
-  # Then it will simply show the command that it will run
-  # the tests should be run in vdr, just 'cause
-  echo "default =>"
-  t
-  echo "............"
-
-  echo "full path =>"
-  t test/unit/document_test.rb
-  echo "............"
-
-  echo "bad path =>"
-  t test/unit/steve.rb
-  echo "............"
-
-  echo "filename =>"
-  t document_test.rb
-  echo "............"
-
-  echo "many files =>"
-  t user_test.rb
-  echo "............"
-
-  echo "test name =>"
-  t pdf_engine
-  echo "............"
-
-  echo "many tests =>"
-  t watermark_pdf
-  echo "............"
-
-  echo "no test =>"
-  t steve
-  echo "............"
-
 }
