@@ -27,6 +27,8 @@ set number
   noremap <leader>pcc :call SnakeCaseToCamelCase()<cr>
   noremap <leader>psc :call CamelCaseToSnakeCase()<cr>
   noremap <leader>fp  :let @" = expand("%:p")
+  set wildmenu
+  set gcr=n:blinkon0
   " noremap <leader>fd :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch<cr>
 
   command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
@@ -160,8 +162,8 @@ set expandtab
     noremap <leader>u :earlier 1f<cr>
     noremap <leader>U :later 1f<cr>
 
-    noremap / :set hlsearch<cr>/
-    noremap <esc> :set nohlsearch<cr><esc>
+    "noremap / :set hlsearch<cr>/
+    noremap <esc> :set hlsearch!<cr><esc>
 
 "   record to register h
     noremap ! qh
@@ -355,8 +357,8 @@ augroup END
 "   Indent plug-in appearance
     let g:indent_guides_guide_size=2
     let g:indent_guides_auto_colors = 0
-    "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#002D38 ctermbg=3
-    "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#003340 ctermbg=4
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#002D38 ctermbg=3
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#003340 ctermbg=4
 
 "   Turn on Indentation
     autocmd VimEnter * :IndentGuidesEnable

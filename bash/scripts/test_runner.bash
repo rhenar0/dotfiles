@@ -1,6 +1,6 @@
 function __test_runner()
 {
-  ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}" $@
+  #ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}" $@
   bin/testunit $@
 }
 export -f __test_runner

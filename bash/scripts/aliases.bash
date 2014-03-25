@@ -19,7 +19,7 @@ function repeat()
 }
 function retag()
 {
-  rm tags TAGS 2> /dev/null; ctags --exclude=.git --exclude=tmp --exclude='*.log' -R * `bundle show --paths`
+  rm tags TAGS 2> /dev/null; ctags --exclude=.git --exclude=tmp --exclude='*.log' -R * `bundle show --paths` 2> /dev/null
 }
 function nuke()
 {
@@ -27,7 +27,7 @@ function nuke()
 }
 function smart_bomb()
 {
-killall -15 $1 2> /dev/null || killall -2 $1 2> /dev/null || killall -1 $1 2> /dev/null || killall -9 $1 2> /dev/null
+  killall -15 $1 2> /dev/null || killall -2 $1 2> /dev/null || killall -1 $1 2> /dev/null || killall -9 $1 2> /dev/null
 }
 function nuke_server()
 {
@@ -190,6 +190,7 @@ function up_app()
   else
     echo 'no migrate'
   fi
+  retag
 }
 
 
