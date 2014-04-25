@@ -1,3 +1,6 @@
 .netrwhist
 tf2/cfg/*.txt
 tf2/cfg/config.cfg
+bash/scripts/private.bash
+bash/scripts/appfolio.bash
+

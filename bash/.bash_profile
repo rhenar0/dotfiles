@@ -7,18 +7,14 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 
 source ~/.rvm/scripts/rvm
+source ~/.bash/scripts/private.bash
+source ~/.bash/scripts/appfolio.bash
 source ~/.bash/scripts/aliases.bash
 source ~/.bash/scripts/prompt.bash
-source ~/.bash/scripts/run_test.bash
 source ~/.bash/scripts/rake_autocomplete.bash
 
-## weird
-#export SSL_CERT_FILE=~/appfolio_ca.crt
 #macVim
 export EDITOR='open -a MacVim'
-
-#svn editor
-export SVN_EDITOR=vim
 
 #For npm
 export PATH="/usr/local/share/npm/bin:$PATH"
@@ -39,8 +35,10 @@ bind -m vi H:vi-insert-beg
 #sets up the color scheme for list export
 LSCOLORS=gxfxcxdxbxegedabagacad
 
+# Used for prompt:
+#
 # seem to be issues with having a trap linked to a
-# function in a different  source?
+# function in a different source?
 function __pk_trapper()
 {
   __pk_trap
