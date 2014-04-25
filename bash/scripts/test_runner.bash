@@ -1,14 +1,14 @@
 function __test_runner()
 {
-  #ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}" $@
-  bin/testunit $@
+  ruby -I test -e "ARGV.each{|f| require Dir.pwd + '/' + f}" $@
+  #bin/testunit $@
 }
 export -f __test_runner
 
 function __test_runner_named()
 {
-  #ruby -I test $@
-  bin/testunit $@
+  ruby -I test $@
+  #bin/testunit $@
 }
 export -f __test_runner_named
 
@@ -58,37 +58,37 @@ function __pk_test_find_path_to_test_folder
     fi
   fi
 }
-function t()
-{
-  __PK_UNABLE_TO_LOCATE_ROOT_FOLDER=0
-  __PK_RELATIVE_PATH="./"
-  __pk_test_find_path_to_test_folder
-  if [[ $__PK_UNABLE_TO_LOCATE_ROOT_FOLDER = 1 ]]
-  then
-    echo "Cannot locate test folder"
-    return
-  fi
+#function t()
+#{
+#  __PK_UNABLE_TO_LOCATE_ROOT_FOLDER=0
+#  __PK_RELATIVE_PATH="./"
+#  __pk_test_find_path_to_test_folder
+#  if [[ $__PK_UNABLE_TO_LOCATE_ROOT_FOLDER = 1 ]]
+#  then
+#    echo "Cannot locate test folder"
+#    return
+#  fi
 
-  cd $__PK_RELATIVE_PATH
+#  cd $__PK_RELATIVE_PATH
 
-  if ! [[ $2 = '' || $2 =~ '--name' ]]
-  then
-    bash -c '__test_runner "$@"'
-    return
-  elif [[ $1 = '' ]]
-  then
-    __pk_test_handle_default
+#  if ! [[ $2 = '' || $2 =~ '--name' ]]
+#  then
+#    bash -c '__test_runner "$@"'
+#    return
+#  elif [[ $1 = '' ]]
+#  then
+#    __pk_test_handle_default
 
-  elif [[ $1 =~ \.rb$ ]]
-  then
-    __pk_test_handle_file_case $1
+#  elif [[ $1 =~ \.rb$ ]]
+#  then
+#    __pk_test_handle_file_case $1
 
-  else
-    __pk_test_handle_function_case $1
+#  else
+#    __pk_test_handle_function_case $1
 
-  fi
-  cd - > /dev/null
-}
+#  fi
+#  cd - > /dev/null
+#}
 
 function __pk_test_handle_default()
 {

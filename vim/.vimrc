@@ -29,6 +29,7 @@ set number
   noremap <leader>fp  :let @" = expand("%:p")
   set wildmenu
   set gcr=n:blinkon0
+  set nocursorline
   " noremap <leader>fd :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch<cr>
 
   command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
@@ -324,12 +325,14 @@ endfunction
 augroup DimInactiveWindows
   au!
   au WinEnter * call s:DimInactiveWindows()
-  au WinEnter * set cursorline
+  " cursorline makes things slow :(
+  "au WinEnter * set cursorline
   au WinLeave * set nocursorline
 augroup END
 
 "   Set line cursor in insert mode
-    autocmd InsertEnter,InsertLeave * set cul!
+"   Cursorline makes things slow :(
+    "autocmd InsertEnter,InsertLeave * set cul!
 "   Keep cursor in center
     set so=10
 
