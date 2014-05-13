@@ -30,6 +30,7 @@ set number
   set wildmenu
   set gcr=n:blinkon0
   set nocursorline
+  noremap Y y$
   " noremap <leader>fd :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch<cr>
 
   command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
@@ -68,7 +69,8 @@ set number
     execute 'pwd'
   endfunction
 
-  noremap <leader>r *#:%s///gc<left><left><left>
+  "noremap <leader>r *#:%s///gc<left><left><left>
+  noremap <leader>r :rubydo $_.gsub! //, ''<left><left><left><left><left>
   noremap <leader>v :vsp<cr>:e $MYVIMRC<cr>
   noremap <C-tab> gt
   noremap <C-S-tab> gT

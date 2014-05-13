@@ -1,4 +1,4 @@
-PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+PATH="/usr/local/sbin:/usr/local/bin:$PATH:~/personal/android_tools/sdk/tools:~/personal/android_tools/sdk/platform-tools"
 
 # git autocomplete
 # must come before aliases
@@ -13,6 +13,16 @@ source ~/.bash/scripts/aliases.bash
 source ~/.bash/scripts/prompt.bash
 source ~/.bash/scripts/rake_autocomplete.bash
 
+# speed up rails boot times...???
+export RUBY_HEAP_SLOTS_INCREMENT=2000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_HEAP_FREE_MIN=1000000
+export RUBY_GC_HEAP_INIT_SLOTS=8000000
+export RUBY_GC_MALLOC_LIMIT=300000000
+
+# needed this to install nokogiri '2.2.1' in ruby 2.1.1
+export CC=gcc
+
 #macVim
 export EDITOR='open -a MacVim'
 
@@ -22,7 +32,8 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 # ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
-export NGINX_VERSION=/usr/local/bin/nginx
+#export NGINX_VERSION=/usr/local/bin/nginx
+export NGINX_VERSION=/usr/local/Cellar/nginx/1.4.3/bin/nginx
 
 # vim keybindings
 set -o vi
@@ -44,3 +55,7 @@ function __pk_trapper()
   __pk_trap
 }
 trap "__pk_trapper" DEBUG
+### /prompt
+
+# must be last cause reasons
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
