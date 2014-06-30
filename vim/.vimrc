@@ -16,9 +16,9 @@ set number
   let g:NERDTreeMapOpenSplit = "q"
   let g:ctrlp_max_depth = 50
   let g:ctrlp_max_files=20000
-  noremap <leader>nu :GundoToggle<cr>
   let g:ctrlp_follow_symlinks = 1
   let g:ctrlp_clear_cache_on_exit = 0
+  noremap <leader>nu :GundoToggle<cr>
   noremap <C-b> :CtrlPBuffer<cr>
   noremap <leader>bb :bp<cr>
   noremap <D-R> :wa<cr>:.Rake<cr>
@@ -31,6 +31,16 @@ set number
   set gcr=n:blinkon0
   set nocursorline
   noremap Y y$
+
+  " MARKDOWN EDITING JUNK
+  function! VimifyMarkDown()
+    execute '%s/\~\([^~]\+\)/\~\r\1/g'
+  endfunction
+
+  function! DeVimifyMarkDown()
+    execute '%s/\~\~\~\n\(.\+\)$/\~\~\~\1/g'
+  endfunction
+
   " noremap <leader>fd :syn clear Repeat | g/^\(.*\)\n\ze\%(.*\n\)*\1$/exe 'syn match Repeat "^' . escape(getline('.'), '".\^$*[]') . '$"' | nohlsearch<cr>
 
   command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
