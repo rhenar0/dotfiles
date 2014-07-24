@@ -32,7 +32,7 @@
 
 
 // Half-Life User Info Configuration Layout Script (stores last settings chosen, too)
-// File generated:  Thu Oct  3 12:45:16 AM
+// File generated:  Wed Jul 23 21:01:08 AM
 //
 //
 // Cvar	-	Setting
@@ -92,7 +92,7 @@ DESCRIPTION INFO_OPTIONS
 		"#TF_rememberactiveweapon"
 		"#Tooltip_rememberactiveweapon"
 		{ BOOL }
-		{ "0" }
+		{ "1" }
 	}
 
 	"tf_remember_lastswitched"
@@ -449,7 +449,7 @@ DESCRIPTION INFO_OPTIONS
 		"#GameUI_DisableSprays"
 		"#Tooltip_DisableSprays"
 		{ BOOL }
-		{ "1" }
+		{ "0" }
 	}
 
 	"sb_close_browser_on_connect"
