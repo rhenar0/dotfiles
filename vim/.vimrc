@@ -11,6 +11,8 @@ set number
 " EXPERIMENTAL
   "set shell=/bin/sh
   ab PRY require 'pry';binding.pry
+  ab PRYR require 'pry-remote'; binding.remote_pry
+  set tags=./tags,tags;
   noremap <leader>pp :cd ~/src/apm_bundle/apps/property
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
@@ -264,7 +266,7 @@ set expandtab
     au FocusLost * silent! wa
 
 "   Strip trailing whitespace on write
-    autocmd BufWritePre * :%s/\s\+$//e
+    "autocmd BufWritePre * :%s/\s\+$//e
 
     noremap <leader>w :%s/\s\+$//e<cr>
 
