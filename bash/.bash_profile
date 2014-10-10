@@ -59,3 +59,6 @@ trap "__pk_trapper" DEBUG
 
 # must be last cause reasons
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# see https://gist.github.com/justinforce/40f82fab5a6cf2d2e8bc
+ulimit -n 9999

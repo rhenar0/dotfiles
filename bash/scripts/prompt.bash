@@ -1,6 +1,6 @@
 #BEGIN PROMPT FUN STUFF
-__PK_TERMINAL_NOTIFIER_PATH='/Users/pete/.rvm/gems/ruby-2.0.0-p353/gems/terminal-notifier-1.5.1/bin/terminal-notifier'
-__PK_RUBY_PATH='/Users/pete/.rvm/rubies/ruby-2.0.0-p353/bin/ruby'
+__PK_TERMINAL_NOTIFIER_PATH='/Users/pete/.rvm/gems/ruby-2.1.2/gems/terminal-notifier-1.6.1/bin/terminal-notifier'
+__PK_RUBY_PATH='/Users/pete/.rvm/rubies/ruby-2.1.2/bin/ruby'
 
 function __pk_test_if_repo()
 {
@@ -42,10 +42,11 @@ function __pk_trap()
 
 function __pk_ruby_prompt()
 {
+  __pk_exit_code=$?
   __pk_timer_stop
   if (( "${timer_show}" > "4" ))
   then
-    $($__PK_TERMINAL_NOTIFIER_PATH -message "'${__PK_COMMAND_HISTORY[1]}' finished." > /dev/null)
+    $($__PK_TERMINAL_NOTIFIER_PATH -message "'${__PK_COMMAND_HISTORY[1]}' finished with exit code ${__pk_exit_code}." > /dev/null)
   fi
   __pk_git_status
   CWD="$(dirs)"

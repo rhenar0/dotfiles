@@ -20,7 +20,12 @@ function smart_bomb()
 
 function pf()
 {
-  ps ax | grep $1
+  if [ "$#" -eq 1 ]
+  then
+      ps -efww | head -1 && ps -efww | grep $1
+  else
+      ps -efww
+  fi
 }
 function df()
 {
