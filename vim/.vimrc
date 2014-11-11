@@ -181,11 +181,11 @@ set expandtab
     noremap <esc> :set hlsearch!<cr><esc>
 
 "   record to register h
-    noremap ! qh
+    "noremap ! qh
 
 "   play from register h
-    noremap @ @h
-    noremap # @
+    "noremap @ @h
+    "noremap # @
 
 " MARKS
 

@@ -15,6 +15,10 @@ whitelist
 	particles/burningplayer_dx80.pcf          trusted_source
 	particles/cig_smoke.pcf                   trusted_source
 	particles/cig_smoke_dx80.pcf              trusted_source
+	particles/explosion.pcf                   trusted_source
+	particles/explosion_dx80.pcf              trusted_source
+	particles/explosion_dx90_slow.pcf         trusted_source
+	particles/explosion_high.pcf              trusted_source
 	particles/disguise.pcf                    trusted_source
 	particles/flag_particles.pcf              trusted_source
 	particles/nemesis.pcf                     trusted_source
