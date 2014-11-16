@@ -1,4 +1,54 @@
-execute pathogen#infect()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Plugins!
+"                               Managed with VAM
+"                https://github.com/MarcWeber/vim-addon-manager
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nocompatible | filetype indent plugin on | syn on
+
+let g:vim_addon_manager = {}
+let g:vim_addon_manager.shell_commands_run_method='system'
+
+fun! SetupVAM()
+  let c = get(g:, 'vim_addon_manager', {})
+  let g:vim_addon_manager = c
+  let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+  let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+  if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+    execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+        \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+  endif
+  call vam#ActivateAddons([], {'auto_install' : 0})
+endfun
+
+call SetupVAM()
+" use <c-x><c-p> to complete plugin names
+" My plugin declarations
+VAMActivate Solarized
+VAMActivate ag
+VAMActivate ctrlp
+VAMActivate fugitive
+
+VAMActivate github:rking/ag.vim
+VAMActivate github:sjl/gundo.vim
+VAMActivate mustache
+VAMActivate github:scrooloose/nerdcommenter
+VAMActivate github:scrooloose/nerdtree
+VAMActivate github:ervandew/supertab
+"VAMActivate vim-coffee-script
+VAMActivate github:nathanaelkane/vim-indent-guides
+VAMActivate github:suan/vim-instant-markdown
+"VAMActivate vim-markdown
+VAMActivate github:tpope/vim-rails
+VAMActivate github:vim-ruby/vim-ruby
+"VAMActivate vim-rvm
+"VAMActivate vim-script
+"VAMActivate vim-textobj-rubyblock
+"VAMActivate vim-textobj-user
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  END VAM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 filetype off
 syntax on
 filetype plugin indent on
