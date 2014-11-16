@@ -1,0 +1,62 @@
+[user]
+	name = Pete Kinnecom
+	email = pete.kinnecom@appfolio.com
+
+[credential]
+  helper = osxkeychain
+
+[core]
+  quotepath = false
+  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  editor = "vim"
+	excludesfile = /Users/pete/.gitignore
+
+[diff]
+  tool = mvimdiff
+
+[difftool "mvimdiff"]
+  cmd = mvim -f -d \"$LOCAL\" \"$REMOTE\"
+
+[alias]
+  co = checkout
+  st = status
+  r = reset --hard
+  c = commit
+  b = branch
+  l = log --pretty=format:'%C(yellow)%H %n%C(yellow)%ad%n%Cblue[%cn]%n%s  %n' --decorate --date=short
+  new = log --oneline HEAD ^origin/master
+  amend = commit --amend --all --no-edit
+
+[color]
+  ui = true
+
+[color "branch"]
+  current = yellow black
+  local = yellow
+  remote = magenta
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red
+  new = green
+  whitespace = white reverse
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan reverse
+  branch = magenta
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[push]
+	default = upstream
+[init]
+	templatedir = /Users/pete/.git_template

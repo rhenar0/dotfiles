@@ -1,0 +1,53 @@
+# from http://thume.ca/howto/2012/11/19/using-slate/
+# Monitor Aliases
+alias mon-laptop      0
+alias mon-external    1
+
+# Misc Aliases
+alias showHintsLeftHand hint AOEUIYQJKX
+alias editor 'MacVim'
+
+# Abstract positions
+alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
+alias lefthalf      move screenOriginX;screenOriginY                  7*screenSizeX/12;screenSizeY
+alias righthalf     move screenOriginX+7*screenSizeX/12;screenOriginY    5*screenSizeX/12;screenSizeY
+
+# Concrete positions
+alias 1-full        move screenOriginX;screenOriginY screenSizeX;screenSizeY         ${mon-laptop}
+alias 1-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
+alias 1-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
+alias 2-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-external}
+alias 2-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-external}
+alias 2-righttop    move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY/2       ${mon-external}
+alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2    screenSizeX/2;screenSizeY/2       ${mon-external}
+
+# 1 Monitor layout
+layout 1monitor 'iTerm':MAIN_FIRST                       ${1-right}
+layout 1monitor 'Sublime Text 2':MAIN_FIRST              ${1-left}
+layout 1monitor 'MacVim':MAIN_FIRST              		     ${1-left}
+layout 1monitor 'Safari':REPEAT                          ${1-full}
+layout 1monitor 'Nightly':REPEAT                         ${1-full}
+layout 1monitor 'Mail':MAIN_FIRST                        ${1-full}
+layout 1monitor 'Path Finder':MAIN_FIRST                 ${1-full}
+layout 1monitor 'Xcode':REPEAT                           ${1-full}
+layout 1monitor 'Eclipse':REPEAT                         ${1-full}
+layout 1monitor 'iTunes':REPEAT                          ${1-full}
+
+# ======================================
+# The HYPER key
+# ======================================
+
+alias hyper ctrl;shift;cmd
+
+# Location bindings
+bind left:${hyper} ${lefthalf}
+bind f:${hyper} ${full}
+bind right:${hyper} ${righthalf}
+bind m:${hyper} throw next
+bind y:${hyper} layout 1monitor
+
+# Resize Bindings
+#bind r:${hyper} ${leftmost}
+#bind g:${hyper} ${rightmost}
+
+bind i:${hyper} focus 'iTerm'
