@@ -62,3 +62,8 @@ trap "__pk_trapper" DEBUG
 
 # see https://gist.github.com/justinforce/40f82fab5a6cf2d2e8bc
 ulimit -n 9999
+
+function property()
+{
+  cd ~/src/apm_bundle/apps/property
+}
