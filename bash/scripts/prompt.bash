@@ -46,7 +46,7 @@ function __pk_ruby_prompt()
   __pk_timer_stop
   if (( "${timer_show}" > "4" ))
   then
-    $($__PK_TERMINAL_NOTIFIER_PATH -message "'${__PK_COMMAND_HISTORY[1]}' finished with exit code ${__pk_exit_code}." > /dev/null)
+    $($__PK_TERMINAL_NOTIFIER_PATH -message "exited: ${__pk_exit_code} - '${__PK_COMMAND_HISTORY[1]}'" > /dev/null)
   fi
   __pk_git_status
   CWD="$(dirs)"

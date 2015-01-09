@@ -1,3 +1,8 @@
 .DS_STORE
 tags
 */**/config/solr_48/*
+start_rails
+.idea/
+.rake_t_cache
+
+Icon

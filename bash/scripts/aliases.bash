@@ -103,6 +103,7 @@ function retag()
 alias g='git'
 # set up auto complete for my git alias
 __git_complete g _git
+__git_complete git_up _git
 
 ############
 # For Pairing

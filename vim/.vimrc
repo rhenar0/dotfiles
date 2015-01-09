@@ -38,9 +38,14 @@ VAMActivate github:ervandew/supertab
 "VAMActivate vim-coffee-script
 VAMActivate github:nathanaelkane/vim-indent-guides
 VAMActivate github:suan/vim-instant-markdown
-"VAMActivate vim-markdown
+VAMActivate github:plasticboy/vim-markdown
 VAMActivate github:tpope/vim-rails
 VAMActivate github:vim-ruby/vim-ruby
+VAMActivate github:jelera/vim-javascript-syntax
+VAMActivate github:scrooloose/syntastic
+VAMActivate github:pangloss/vim-javascript
+VAMActivate github:kchmck/vim-coffee-script
+VAMActivate github:rodjek/vim-puppet
 "VAMActivate vim-rvm
 "VAMActivate vim-script
 "VAMActivate vim-textobj-rubyblock
@@ -59,6 +64,7 @@ set number
   let mapleader = ","
 "
 " EXPERIMENTAL
+let g:syntastic_check_on_open=1
   "set shell=/bin/sh
   ab PRY require 'pry';binding.pry
   ab PRYR require 'pry-remote'; binding.remote_pry
@@ -66,10 +72,12 @@ set number
   noremap <leader>pp :cd ~/src/apm_bundle/apps/property
   noremap <leader>nt :NERDTreeFind<cr>
   let g:NERDTreeMapOpenSplit = "q"
+  let NERDTreeIgnore=['.*tmp/.*', 'Icon$', '\~$']
   let g:ctrlp_max_depth = 50
   let g:ctrlp_max_files=20000
   let g:ctrlp_follow_symlinks = 1
   let g:ctrlp_clear_cache_on_exit = 0
+  set wildignore+=**/screenshots/**
   noremap <leader>nu :GundoToggle<cr>
   noremap <C-b> :CtrlPBuffer<cr>
   noremap <leader>bb :bp<cr>
@@ -351,7 +359,7 @@ set expandtab
     noremap <C-t> :CtrlPTag<Cr>
 
 "   Jquery syntax
-    au BufRead,BufNewFile *.js set ft=javascript syntax=jquery
+    "au BufRead,BufNewFile *.js set ft=javascript syntax=jquery
 
 "   Handlebars syntax
     au BufRead,BufNewFile *.hbs set ft=handlebars syntax=mustache
