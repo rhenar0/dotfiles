@@ -37,8 +37,9 @@ VAMActivate github:scrooloose/nerdtree
 VAMActivate github:ervandew/supertab
 "VAMActivate vim-coffee-script
 VAMActivate github:nathanaelkane/vim-indent-guides
+"VAMActivate github:wikimatze/hammer.vim
+"VAMActivate github:plasticboy/vim-markdown
 VAMActivate github:suan/vim-instant-markdown
-VAMActivate github:plasticboy/vim-markdown
 VAMActivate github:tpope/vim-rails
 VAMActivate github:vim-ruby/vim-ruby
 VAMActivate github:jelera/vim-javascript-syntax
@@ -46,6 +47,7 @@ VAMActivate github:scrooloose/syntastic
 VAMActivate github:pangloss/vim-javascript
 VAMActivate github:kchmck/vim-coffee-script
 VAMActivate github:rodjek/vim-puppet
+VAMActivate github:moll/vim-node
 "VAMActivate vim-rvm
 "VAMActivate vim-script
 "VAMActivate vim-textobj-rubyblock
@@ -61,10 +63,11 @@ set noswapfile
 filetype indent on
 set number
 " LEADER
+set shell=bash\ -i
   let mapleader = ","
 "
 " EXPERIMENTAL
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
   "set shell=/bin/sh
   ab PRY require 'pry';binding.pry
   ab PRYR require 'pry-remote'; binding.remote_pry
