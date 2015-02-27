@@ -22,7 +22,7 @@ function pf()
 {
   if [ "$#" -eq 1 ]
   then
-      ps -efww | head -1 && ps -efww | grep $1
+      ps -efww | head -1 && ps -efww | grep -i $1
   else
       ps -efww
   fi
