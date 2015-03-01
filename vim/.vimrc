@@ -67,6 +67,10 @@ set shell=bash\ -i
   let mapleader = ","
 "
 " EXPERIMENTAL
+ let g:ctrlp_user_command = [
+    \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
+    \ 'find %s -type f'
+    \ ]
 let g:syntastic_check_on_open=0
   "set shell=/bin/sh
   ab PRY require 'pry';binding.pry
