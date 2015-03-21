@@ -165,3 +165,24 @@ function up()
 {
   app_up "$@"
 }
+
+function nuke_solr() {
+  BLUE="\033[34m"
+  launchctl stop homebrew.mxcl.solr
+  launchctl start homebrew.mxcl.solr
+  echo -e "${BLUE}Fixing Solr for property"
+  rm config/solr_48/core.properties 2> /dev/null
+  rake solr:destroy_core 2> /dev/null
+  rake solr:create_core
+  echo -e "${BLUE}Fixing Solr for property test"
+  RAILS_ENV=test rake solr:destroy_core 2> /dev/null
+  RAILS_ENV=test rake solr:create_core
+  echo -e "${BLUE}Fixing Solr for property search engine"
+  cd engines/search
+  rm config/solr_48/core.properties 2> /dev/null
+  RAILS_ENV=test rake solr:destroy_core 2> /dev/null
+  RAILS_ENV=test rake solr:create_core
+  cd - > /dev/null
+  echo -e "${BLUE}Reindexing solr"
+  rake solr:reindex
+}
