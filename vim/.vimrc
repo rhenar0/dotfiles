@@ -48,6 +48,7 @@ VAMActivate github:pangloss/vim-javascript
 VAMActivate github:kchmck/vim-coffee-script
 VAMActivate github:rodjek/vim-puppet
 VAMActivate github:moll/vim-node
+VAMActivate github:henrik/vim-qargs
 "VAMActivate vim-rvm
 "VAMActivate vim-script
 "VAMActivate vim-textobj-rubyblock
@@ -67,6 +68,13 @@ set shell=bash\ -i
   let mapleader = ","
 "
 " EXPERIMENTAL
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %smagic/
+cnoremap \>s/ \>smagic/
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
+nnoremap <leader>a :Ag ""<left>
  let g:ctrlp_user_command = [
     \ '.git', 'cd %s && git ls-files . -co --exclude-standard',
     \ 'find %s -type f'

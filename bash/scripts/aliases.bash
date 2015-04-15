@@ -43,6 +43,19 @@ function selenium_restart()
   launchctl start homebrew.mxcl.selenium-server-standalone
 }
 
+function solr_restart()
+{
+  nuke solr
+  launchctl start homebrew.mxcl.solr
+}
+
+function reset_javas()
+{
+  selenium_restart
+  solr_restart
+  bundle exec rake solr:create_core solr:reindex
+}
+
 ############
 # Novel
 ###########
