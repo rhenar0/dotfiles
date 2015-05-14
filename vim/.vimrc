@@ -39,7 +39,7 @@ VAMActivate github:ervandew/supertab
 VAMActivate github:nathanaelkane/vim-indent-guides
 "VAMActivate github:wikimatze/hammer.vim
 "VAMActivate github:plasticboy/vim-markdown
-VAMActivate github:suan/vim-instant-markdown
+"VAMActivate github:suan/vim-instant-markdown
 VAMActivate github:tpope/vim-rails
 VAMActivate github:vim-ruby/vim-ruby
 VAMActivate github:jelera/vim-javascript-syntax
@@ -91,7 +91,7 @@ let g:syntastic_check_on_open=0
   let g:ctrlp_max_depth = 500
   let g:ctrlp_max_files=100000
   let g:ctrlp_follow_symlinks = 1
-  let g:ctrlp_clear_cache_on_exit = 0
+  let g:ctrlp_clear_cache_on_exit = 1
   set wildignore+=**/screenshots/**
   noremap <leader>nu :GundoToggle<cr>
   noremap <C-b> :CtrlPBuffer<cr>

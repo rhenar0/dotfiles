@@ -119,21 +119,9 @@ __git_complete g _git
 __git_complete git_up _git
 
 ############
-# For Pairing
-###########
-function st()
-{
-   git status
-}
-
-############
 # Ruby/Rails
 ###########
 
-function be()
-{
-  bundle exec "$@"
-}
 
 function brake()
 {
@@ -172,7 +160,7 @@ function mrm()
 
 # from sfb_scripts.gem
 # https://github.com/petekinnecom/sfb_scripts
-alias t='test_runner find'
+alias t='test_launcher find'
 
 function up()
 {
