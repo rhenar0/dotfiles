@@ -13,15 +13,12 @@ source ~/.bash/scripts/aliases.bash
 source ~/.bash/scripts/prompt.bash
 source ~/.bash/scripts/rake_autocomplete.bash
 
-# speed up rails boot times...???
+# speed up rails boot times
 export RUBY_HEAP_SLOTS_INCREMENT=2000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_HEAP_FREE_MIN=1000000
 export RUBY_GC_HEAP_INIT_SLOTS=8000000
 export RUBY_GC_MALLOC_LIMIT=300000000
-
-# needed this to install nokogiri '2.2.1' in ruby 2.1.1
-export CC=gcc
 
 #macVim
 export EDITOR='open -a MacVim'
@@ -32,7 +29,6 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 # ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
-#export NGINX_VERSION=/usr/local/bin/nginx
 export NGINX_VERSION=/usr/local/Cellar/nginx/1.4.3/bin/nginx
 
 # vim keybindings
@@ -57,13 +53,7 @@ function __pk_trapper()
 trap "__pk_trapper" DEBUG
 ### /prompt
 
-# must be last cause reasons
+# must be last because reasons
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-# see https://gist.github.com/justinforce/40f82fab5a6cf2d2e8bc
 ulimit -n 9999
-
-function property()
-{
-  cd ~/src/apm_bundle/apps/property
-}
